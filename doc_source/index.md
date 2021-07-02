@@ -1,7 +1,7 @@
 # Amazon Managed Blockchain Hyperledger Fabric Developer Guide
 
 -----
-*****Copyright &copy; 2020 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -20,9 +20,9 @@ Amazon's trademarks and trade dress may not be used in
    + [Prerequisites and Considerations](get-started-prerequisites.md)
    + [Step 1: Create the Network and First Member](get-started-create-network.md)
    + [Step 2: Create and Configure the Interface VPC Endpoint](get-started-create-endpoint.md)
-   + [Step 3: Create an Amazon EC2 Instance and Set Up the Hyperledger Fabric Client](get-started-create-client.md)
-   + [Step 4: Enroll an Administrative User](get-started-enroll-admin.md)
-   + [Step 5: Create a Peer Node in Your Membership](get-started-create-peer-node.md)
+   + [Step 3: Create a Peer Node in Your Membership](get-started-create-peer-node.md)
+   + [Step 4: Create an Amazon EC2 Instance and Set Up the Hyperledger Fabric Client](get-started-create-client.md)
+   + [Step 5: Enroll an Administrative User](get-started-enroll-admin.md)
    + [Step 6: Create a Hyperledger Fabric Channel](get-started-create-channel.md)
    + [Step 7: Install and Run Chaincode](get-started-chaincode.md)
    + [Step 8: Invite Another AWS Account to be a Member and Create a Multi-Member Channel](get-started-joint-channel.md)
@@ -49,13 +49,15 @@ Amazon's trademarks and trade dress may not be used in
    + [Query Chaincode Data in the State Database](hyperledger-couchdb.md)
 + [Hyperledger Fabric on Amazon Managed Blockchain Security](managed-blockchain-security.md)
    + [Data Protection for Hyperledger Fabric on Amazon Managed Blockchain](managed-blockchain-data-protection.md)
+      + [Encryption at Rest for Hyperledger Fabric on Managed Blockchain](managed-blockchain-encryption-at-rest.md)
+      + [Encryption in Transit for Hyperledger Fabric on Managed Blockchain](managed-blockchain-encryption-in-transit.md)
    + [Authentication and Access Control for Hyperledger Fabric on Managed Blockchain](managed-blockchain-auth-and-access-control.md)
-   + [Identity and Access Management for Hyperledger Fabric on Amazon Managed Blockchain](security-iam.md)
-      + [How Hyperledger Fabric on Amazon Managed Blockchain works with IAM](security_iam_service-with-iam.md)
-      + [Hyperledger Fabric on Amazon Managed Blockchain Identity-Based Policy Examples](security_iam_id-based-policy-examples.md)
-      + [Example IAM Role Permissions Policy for Hyperledger Fabric Client EC2 Instance](security_iam_hyperledger_ec2_client.md)
-      + [Using Service-Linked Roles for Managed Blockchain](using-service-linked-roles.md)
-      + [Troubleshooting Hyperledger Fabric on Amazon Managed Blockchain identity and access](security_iam_troubleshoot.md)
+      + [Identity and Access Management for Hyperledger Fabric on Amazon Managed Blockchain](security-iam.md)
+         + [How Hyperledger Fabric on Amazon Managed Blockchain works with IAM](security_iam_service-with-iam.md)
+         + [Hyperledger Fabric on Amazon Managed Blockchain Identity-Based Policy Examples](security_iam_id-based-policy-examples.md)
+         + [Example IAM Role Permissions Policy for Hyperledger Fabric Client EC2 Instance](security_iam_hyperledger_ec2_client.md)
+         + [Using Service-Linked Roles for Managed Blockchain](using-service-linked-roles.md)
+         + [Troubleshooting Hyperledger Fabric on Amazon Managed Blockchain identity and access](security_iam_troubleshoot.md)
    + [Configuring Security Groups for Hyperledger Fabric on Amazon Managed Blockchain](managed-blockchain-security-sgs.md)
 + [Tagging Amazon Managed Blockchain resources](tagging.md)
 + [Monitoring Hyperledger Fabric on Managed Blockchain Using CloudWatch Logs](monitoring-cloudwatch-logs.md)

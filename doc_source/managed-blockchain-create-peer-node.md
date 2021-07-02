@@ -2,7 +2,7 @@
 
 You can create a Hyperledger Fabric peer node in a member that is in your AWS account using the AWS Management Console, the AWS CLI, or the Managed Blockchain SDK [CreateNode](https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/>API_CreateNode.html) action\.
 
-## To create a peer node using the AWS Management Console<a name="w40aac22c13b5b1"></a>
+## To create a peer node using the AWS Management Console<a name="w75aac21c13b5b1"></a>
 
 1. Open the Managed Blockchain console at [https://console\.aws\.amazon\.com/managedblockchain/](https://console.aws.amazon.com/managedblockchain/)\.
 
@@ -12,7 +12,7 @@ You can create a Hyperledger Fabric peer node in a member that is in your AWS ac
 
 1. Choose configuration parameters for your peer node according to the guidelines in [Work with Hyperledger Fabric Peer Nodes on Managed Blockchain](managed-blockchain-hyperledger-peer-nodes.md), and then choose **Create peer node**\.
 
-## To create a peer node using the AWS CLI<a name="w40aac22c13b5b3"></a>
+## To create a peer node using the AWS CLI<a name="w75aac21c13b5b3"></a>
 + Use the `create-node` command, as shown in the following example\. Replace the value of `--network-id`, `--member-id`, and `AvailabilityZone` as appropriate\.
 
   ```

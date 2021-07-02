@@ -15,7 +15,7 @@ This topic provides basic information for creating proposals to invite or remove
 
 You can use the AWS Management Console, the AWS CLI, or the Managed Blockchain API to create an invitation proposal\. When a proposal to invite a member is approved, an invitation is sent to the specified AWS accounts\. An administrator with the appropriate permissions in that account can then choose to either create a member and join the network or reject the invitation\.
 
-### To create an invitation proposal using the AWS Management Console<a name="w40aac16c13b5b1"></a>
+### To create an invitation proposal using the AWS Management Console<a name="w75aac15c13b5b1"></a>
 
 1. Open the Managed Blockchain console at [https://console\.aws\.amazon\.com/managedblockchain/](https://console.aws.amazon.com/managedblockchain/)\.
 
@@ -31,7 +31,9 @@ The member who submits the proposal must also vote on it\. A Yes vote is not aut
 
 1. For each AWS account that you want to invite, enter the account number in the space provided\. Choose **Add** to enter additional accounts\.
 
-### To create an invitation proposal using the AWS CLI<a name="w40aac16c13b5b3"></a>
+1. Choose **Create**\.
+
+### To create an invitation proposal using the AWS CLI<a name="w75aac15c13b5b3"></a>
 + Type a command similar to the following\. Replace the value of `Principal` with the AWS account ID that you want to invite\. Replace the value of `--member-id` with the value for the member in your account that submits the proposal\.
 
   ```
@@ -53,7 +55,7 @@ The member who submits the proposal must also vote on it\. A Yes vote is not aut
 
 You can use the AWS Management Console, the AWS CLI, or the Managed Blockchain API to create a proposal to remove a member owned by another AWS account\.
 
-### To create a proposal to remove a member using the AWS Management Console<a name="w40aac16c15b5b1"></a>
+### To create a proposal to remove a member using the AWS Management Console<a name="w75aac15c15b5b1"></a>
 
 1. Open the Managed Blockchain console at [https://console\.aws\.amazon\.com/managedblockchain/](https://console.aws.amazon.com/managedblockchain/)\.
 
@@ -69,7 +71,7 @@ The member who submits the proposal must also vote on it\. A Yes vote is not aut
 
 1. For each member that you want to remove, enter the member ID in the space provided\. Choose **Add** to enter additional members\.
 
-### To create a removal proposal using the AWS CLI<a name="w40aac16c15b5b3"></a>
+### To create a removal proposal using the AWS CLI<a name="w75aac15c15b5b3"></a>
 + Type a command similar to the following\. Replace the value of `Principal` with the AWS account ID that you want to invite\. Replace the value of `--member-id` with the value for the member in your account that submits the proposal\.
 
   ```
@@ -94,7 +96,7 @@ You can use the AWS Management Console, the AWS CLI, or the Managed Blockchain A
 **Warning**  
 Removing a member in your account deletes all associated resources, such as peer nodes\. For your AWS account to rejoin the network, an existing member must create a proposal to invite your AWS account, and the proposal must be approved\.
 
-### To delete a member in your account using the AWS Management Console<a name="w40aac16c17b7b1"></a>
+### To delete a member in your account using the AWS Management Console<a name="w75aac15c17b7b1"></a>
 
 1. Open the Managed Blockchain console at [https://console\.aws\.amazon\.com/managedblockchain/](https://console.aws.amazon.com/managedblockchain/)\.
 
@@ -104,7 +106,7 @@ Removing a member in your account deletes all associated resources, such as peer
 
 1. Choose **Delete** when prompted to confirm\.
 
-### To delete a member in your account using the AWS CLI<a name="w40aac16c17b7b3"></a>
+### To delete a member in your account using the AWS CLI<a name="w75aac15c17b7b3"></a>
 + Use the `delete-member` command as shown in the following example\. Replace the values of `--network-id` and `--member-id` as appropriate\.
 
   ```

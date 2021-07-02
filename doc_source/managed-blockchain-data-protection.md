@@ -1,13 +1,22 @@
 # Data Protection for Hyperledger Fabric on Amazon Managed Blockchain<a name="managed-blockchain-data-protection"></a>
 
+The AWS [shared responsibility model](http://aws.amazon.com/compliance/shared-responsibility-model/) applies to data protection in Hyperledger Fabric on Amazon Managed Blockchain\. As described in this model, AWS is responsible for protecting the global infrastructure that runs all of the AWS Cloud\. You are responsible for maintaining control over your content that is hosted on this infrastructure\. This content includes the security configuration and management tasks for the AWS services that you use\. For more information about data privacy, see the [Data Privacy FAQ](http://aws.amazon.com/compliance/data-privacy-faq)\. For information about data protection in Europe, see the [AWS Shared Responsibility Model and GDPR](http://aws.amazon.com/blogs/security/the-aws-shared-responsibility-model-and-gdpr/) blog post on the *AWS Security Blog*\.
+
+For data protection purposes, we recommend that you protect AWS account credentials and set up individual user accounts with AWS Identity and Access Management \(IAM\)\. That way each user is given only the permissions necessary to fulfill their job duties\. We also recommend that you secure your data in the following ways:
++ Use multi\-factor authentication \(MFA\) with each account\.
++ Use SSL/TLS to communicate with AWS resources\. We recommend TLS 1\.2 or later\.
++ Set up API and user activity logging with AWS CloudTrail\.
++ Use AWS encryption solutions, along with all default security controls within AWS services\.
++ Use advanced managed security services such as Amazon Macie, which assists in discovering and securing personal data that is stored in Amazon S3\.
++ If you require FIPS 140\-2 validated cryptographic modules when accessing AWS through a command line interface or an API, use a FIPS endpoint\. For more information about the available FIPS endpoints, see [Federal Information Processing Standard \(FIPS\) 140\-2](http://aws.amazon.com/compliance/fips/)\.
+
+We strongly recommend that you never put sensitive identifying information, such as your customers' account numbers, into free\-form fields such as a **Name** field\. This includes when you work with Hyperledger Fabric on Managed Blockchain or other AWS services using the console, API, AWS CLI, or AWS SDKs\. Any data that you enter into Hyperledger Fabric on Managed Blockchain or other services might get picked up for inclusion in diagnostic logs\. When you provide a URL to an external server, don't include credentials information in the URL to validate your request to that server\.
+
+## Data Encryption for Hyperledger Fabric on Managed Blockchain<a name="managed-blockchain-data-protection.encryption"></a>
+
 Data encryption helps prevent unauthorized users from reading data from a blockchain network and the associated data storage systems\. This includes data saved to persistent media, known as *data at rest*, and data that may be intercepted as it travels the network, known as *data in transit*\.
 
-## Encryption at Rest<a name="managed-blockchain-encryption-at-rest"></a>
-
-Amazon Managed Blockchain offers fully managed encryption at rest\. Managed Blockchain encryption at rest provides enhanced security by encrypting all data at rest on peer nodes using Managed Blockchain owned encryption keys in AWS Key Management Service \(AWS KMS\)\. This functionality helps reduce the operational burden and complexity involved in protecting sensitive data\. With encryption at rest, you can build security\-sensitive blockchain applications that meet strict encryption compliance and regulatory requirements\.
-
-Encryption at rest integrates with AWS KMS for managing the encryption key that is used to encrypt your tables\. A Managed Blockchain owned key is used to encrypt data at rest by default at no additional cost\. No configuration is required\. Using an AWS managed encryption key is not supported\. For more information, see [AWS owned CMKs](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-owned-cmk) in the *AWS Key Management Service Developer Guide*\.
-
-## Encryption in Transit<a name="managed-blockchain-encryption-in-transit"></a>
-
-The Hyperledger Fabric certificate authority \(CA\) in each membership provides a TLS certificate authority to secure Hyperledger Fabric communication channels in the network\. For more information, see the [Fabric CA's User Guide](https://hyperledger-fabric-ca.readthedocs.io/en/release-1.4/users-guide.html) in Hyperledger Fabric documentation\.
+**Topics**
++ [Data Encryption for Hyperledger Fabric on Managed Blockchain](#managed-blockchain-data-protection.encryption)
++ [Encryption at Rest for Hyperledger Fabric on Managed Blockchain](managed-blockchain-encryption-at-rest.md)
++ [Encryption in Transit for Hyperledger Fabric on Managed Blockchain](managed-blockchain-encryption-in-transit.md)

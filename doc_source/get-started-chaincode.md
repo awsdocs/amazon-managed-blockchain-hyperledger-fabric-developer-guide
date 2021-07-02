@@ -1,6 +1,6 @@
 # Step 7: Install and Run Chaincode<a name="get-started-chaincode"></a>
 
-In this section, you install [sample chaincode](https://github.com/hyperledger/fabric-test/blob/56238a0dd96d87ec541bb1f8ba33822a122e621d/chaincodes/example02/go/chaincode.go) on your peer\. You then use the chaincode's `init` command to instantiate initial values attributed to entities `a` and `b` in the ledger, followed by the `query` command to confirm that instantiation was successful\. Next, you use the chaincode's `invoke` command to transfer 10 units from `a` to `b` in the ledger\. Finally, you use the chaincode's `query` command again to confirm that the value attributed to `a` was decremented by 10 units in the ledger\.
+In this section, you install [sample chaincode](https://github.com/hyperledger/fabric-samples/blob/v1.4.7/chaincode/chaincode_example02/go/chaincode_example02.go) on your peer\. You then use the chaincode's `init` command to instantiate initial values attributed to entities `a` and `b` in the ledger, followed by the `query` command to confirm that instantiation was successful\. Next, you use the chaincode's `invoke` command to transfer 10 units from `a` to `b` in the ledger\. Finally, you use the chaincode's `query` command again to confirm that the value attributed to `a` was decremented by 10 units in the ledger\.
 
 ## Step 7\.1: Install Chaincode<a name="get-started-create-channel-install-chaincode"></a>
 
@@ -9,7 +9,7 @@ Run the following command to install example chaincode on the peer node:
 ```
 docker exec cli peer chaincode install \
 -n mycc -v v0 \
--p github.com/hyperledger/fabric-test/blob/56238a0dd96d87ec541bb1f8ba33822a122e621d/chaincodes/example02/go/chaincode.go
+-p github.com/chaincode_example02/go
 ```
 
 ## Step 7\.2: Instantiate Chaincode<a name="get-started-create-instantiate-chaincode"></a>

@@ -4,6 +4,8 @@ In Hyperledger Fabric, a ledger exists in the scope of a channel\. The ledger ca
 
 In this step, you set up a basic channel\. Later on in the tutorial, in [Step 8: Invite Another AWS Account to be a Member and Create a Multi\-Member Channel](get-started-joint-channel.md), you go through a similar process to set up a channel that includes another member\.
 
+Wait a minute or two for the administrative permissions from previous steps to propagate, and then perform these tasks to create a channel\.
+
 **Note**  
 All Hyperledger Fabric networks on Managed Blockchain support a maximum of 8 channels per network, regardless of network edition\.
 
@@ -15,7 +17,7 @@ This `configtx.yaml` enables application features associated with Hyperledger Fa
 
 Use a text editor to create a file with the following contents and save it as `configtx.yaml` on your Hyperledger Fabric client\. Note the following placeholders and values\.
 + Replace *MemberID* with the MemberID you returned previously\. For example *m\-K46ICRRXJRCGRNNS4ES4XUUS5A*\.
-+ The `MSPDir` is set to the same directory location, `/opt/home/admin-msp`, that you established using the `CORE_PEER_MSPCONFIGPATH` environment variable in the Docker container for the Hyperledger Fabric CLI in [step 3\.4](get-started-create-client.md#get-started-client-configure-peer-cli)\.
++ The `MSPDir` is set to the same directory location, `/opt/home/admin-msp`, that you established using the `CORE_PEER_MSPCONFIGPATH` environment variable in the Docker container for the Hyperledger Fabric CLI in [step 4\.4](get-started-create-client.md#get-started-client-configure-peer-cli)\.
 
 **Important**  
 This file is sensitive\. Artifacts from pasting can cause the file to fail with marshalling errors\. We recommend using `emacs` to edit it\. You can also use `VI`, but before using `VI`, enter `:set paste`, press `i` to enter insert mode, paste the contents, press escape, and then enter `:set nopaste` before saving\.
@@ -180,6 +182,9 @@ docker exec cli peer channel create -c mychannel \
 -f /opt/home/mychannel.pb -o $ORDERER \
 --cafile /opt/home/managedblockchain-tls-chain.pem --tls
 ```
+
+**Important**  
+It may take a minute or two after you enroll an administrative user for you to be able to use your administrator certificate to create a channel with the ordering service\.
 
 ## Step 6\.4: Join Your Peer Node to the Channel<a name="get-started-create-channel-join-peer"></a>
 

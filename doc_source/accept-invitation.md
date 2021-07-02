@@ -6,14 +6,14 @@ You can see all pending, accepted, and rejected invitations for your AWS account
 
 You can set up Amazon CloudWatch Events along with Amazon Simple Notification Service so that you receive an alert when there is an invitation for your account\. For more information, see [Automating Managed Blockchain Proposal Notifications with CloudWatch Events](automating-proposals-with-cloudwatch-events.md)\.
 
-## To list blockchain network member invitations for your AWS account using the console<a name="w40aac18c13b9b1"></a>
+## To list blockchain network member invitations for your AWS account using the console<a name="w75aac17c13b9b1"></a>
 
 1. Open the Managed Blockchain console at [https://console\.aws\.amazon\.com/managedblockchain/](https://console.aws.amazon.com/managedblockchain/)\.
 
 1. Choose **Invitations**, and then do one of the following:    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/managed-blockchain/latest/hyperledger-fabric-dev/accept-invitation.html)
 
-## To list blockchain network member invitations for your AWS account using the AWS CLI<a name="w40aac18c13b9b3"></a>
+## To list blockchain network member invitations for your AWS account using the AWS CLI<a name="w75aac17c13b9b3"></a>
 + Use the following command:
 
   ```

@@ -18,4 +18,4 @@ Security groups act as virtual firewalls\. They control inbound and outbound tra
 | Inbound/Outbound | Type | Source/Destination | Purpose | 
 | --- | --- | --- | --- | 
 |  Outbound  |  All traffic  |  0\.0\.0/0 \(Anywhere\)  |  Default\. Allows unrestricted outbound traffic from the Hyperledger Fabric client to all recipients\. If necessary, you can limit the destination to the interface VPC endpoint\.  | 
-|  Inbound  |  SSH \(Port 22\)  |  The IP address, address range, or security group that includes trusted SSH clients that connect to the Hyperledger Fabric client\.  |  Allows trusted clients to use SSH to connect to the Hyperledger Fabric client to interact—for example, to query and execute chaincode\.  | 
+|  Inbound  |  SSH \(Port 22\)  |  The IP address, address range, or security group that includes trusted SSH clients that connect to the Hyperledger Fabric client\.  |  Allows trusted clients to use SSH to connect to the Hyperledger Fabric client to interact—for example, to query and run chaincode\.  | 

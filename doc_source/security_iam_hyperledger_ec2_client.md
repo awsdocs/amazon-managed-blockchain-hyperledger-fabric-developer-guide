@@ -103,6 +103,6 @@ For more information, see [IAM roles for Amazon EC2](https://docs.aws.amazon.com
 
 1. From the list of instances, select the instance that you are using as a Hyperledger Fabric client\.
 
-1. Choose **Actions**, **Instance Settings**, **Modify IAM role**\.
+1. Choose **Actions**, **Security**, **Modify IAM role**\.
 
 1. For **IAM role** begin typing the name of the role you created, for example, **ServiceRoleForHyperledgerFabricClient**\. Select it from the list, and then choose **Apply**\.

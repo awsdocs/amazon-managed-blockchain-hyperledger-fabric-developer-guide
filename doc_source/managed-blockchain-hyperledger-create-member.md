@@ -4,7 +4,7 @@ You can use the Managed Blockchain console, the AWS CLI, or the Managed Blockcha
 
 After you create the member, for the member to be functional on the network, your account must have a VPC endpoint associated with the VPC endpoint service name published by the network\. For more information, see [Create an Interface VPC Endpoint for Hyperledger Fabric on Amazon Managed Blockchain](managed-blockchain-endpoints.md)\. You also must create at least one peer node in your membership\. For more information, see [Work with Hyperledger Fabric Peer Nodes on Managed Blockchain](managed-blockchain-hyperledger-peer-nodes.md)\.
 
-## To accept an invitation to create a member and join a network using the AWS Management Console<a name="w40aac18c15b9b1"></a>
+## To accept an invitation to create a member and join a network using the AWS Management Console<a name="w75aac17c15b9b1"></a>
 
 1. Open the Managed Blockchain console at [https://console\.aws\.amazon\.com/managedblockchain/](https://console.aws.amazon.com/managedblockchain/)\.
 
@@ -12,17 +12,15 @@ After you create the member, for the member to be functional on the network, you
 
 1. Select the invitation that you want to accept from the list, and then choose **Accept invitation**\. To view more information about the network you are invited to join, choose the network **Name** from the list
 
-1. Under **Join network**, configure your network member according to the following guidelines:
+1. Under **Create member and join network**, configure your network member according to the following guidelines:
 
    1. Enter a **Member name** that will be visible to all members and an optional **Description**\.
 
    1. Under **Hyperledger Fabric certificate authority \(CA\) configuration** specify a username and password to be used as the administrator on the Hyperledger Fabric CA\. Remember the user name and password\. You need them later any time that you create users and resources that need to authenticate\.
 
-   1. Choose **Create member and join network**\.
+1. Choose **Create member and join network**\.
 
-1. Choose **Create member**\.
-
-## To accept an invitation to create a member and join a network using the AWS CLI<a name="w40aac18c15b9b3"></a>
+## To accept an invitation to create a member and join a network using the AWS CLI<a name="w75aac17c15b9b3"></a>
 + Use the `create-member` command similar to the example below\. Replace the value of `--network-id` with the Network ID that you are joining and `--invitation-id` with the Invitation ID sent to your account from the network\.
 
   ```

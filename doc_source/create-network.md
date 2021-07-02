@@ -11,13 +11,13 @@ When you create the network and the first member in your AWS account, the networ
 
 You can create a Hyperledger Fabric network using the AWS Management Console, the AWS CLI, or the Managed Blockchain SDK [CreateNetwork](https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/>CreateNetwork.html) action\.
 
-### To create a Hyperledger Fabric network using the AWS Management Console<a name="w40aac12c11b5b1"></a>
+### To create a Hyperledger Fabric network using the AWS Management Console<a name="w75aac11c11b5b1"></a>
 
 1. Open the Managed Blockchain console at [https://console\.aws\.amazon\.com/managedblockchain/](https://console.aws.amazon.com/managedblockchain/)\.
 
-1. Choose **Create network**\.
+1. Choose **Create private network**\.
 
-1. Under **Blockchain framework**:
+1. Under **Blockchain frameworks**:
 
    1. Select the blockchain framework to use\. This tutorial is based on **Hyperledger Fabric version **\.
 
@@ -37,13 +37,13 @@ You can create a Hyperledger Fabric network using the AWS Management Console, th
 
    1. Under **Hyperledger Fabric certificate authority \(CA\) configuration** specify a username and password to be used as the administrator on the Hyperledger Fabric CA\. Remember the user name and password\. You need them later any time that you create users and resources that need to authenticate\.
 
-   1. Choose **Create member and join network**\.
+   1. Choose **Next**\.
 
 1. Review **Network options** and **Member options**, and then choose **Create network and member**\.
 
-   The **Networks** list shows the name and **Network ID** of the network you created, with a **Status** of **Creating**\. It may take a minute or two for Managed Blockchain to create your network, after which the **Status** is **Active**\.
+   The **Networks** list shows the name and **Network ID** of the network you created, with a **Status** of **Creating**\. It takes around 30 minutes for Managed Blockchain to create your network, after which the **Status** is **Available**\.
 
-### To create a Hyperledger Fabric network using the AWS CLI<a name="w40aac12c11b5b3"></a>
+### To create a Hyperledger Fabric network using the AWS CLI<a name="w75aac11c11b5b3"></a>
 
 Use the `create-network` command as shown in the following example\. Consider the following:
 + The example shows `HYPERLEDGER_FABRIC` as the `Framework` and as the `FrameworkVersion`\. The `FrameworkConfiguration` properties for `--network-configuration` and `--member-configuration` options may be different for other frameworks and versions\.

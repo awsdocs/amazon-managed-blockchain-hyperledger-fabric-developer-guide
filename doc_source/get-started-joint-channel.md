@@ -8,7 +8,7 @@ After the invitation proposal is approved, the invited account can create a memb
 
 Create a proposal to invite an AWS account to create a member and join the network according to the following procedures\. You need the AWS account ID of the member you want to invite\. You can also invite your own account to create an additional member\. If you are using the CLI, you also need the Network ID and Member ID that you created in [Step 1: Create the Network and First Member](get-started-create-network.md)\.
 
-### To create an invitation proposal using the AWS Management Console<a name="w40aab9c25b7b5b1"></a>
+### To create an invitation proposal using the AWS Management Console<a name="w75aab9c25b7b5b1"></a>
 
 1. Open the Managed Blockchain console at [https://console\.aws\.amazon\.com/managedblockchain/](https://console.aws.amazon.com/managedblockchain/)\.
 
@@ -24,7 +24,9 @@ The member who submits the proposal must also vote on it\. A Yes vote is not aut
 
 1. For each AWS account that you want to invite, enter the account number in the space provided\. Choose **Add** to enter additional accounts\.
 
-### To create an invitation proposal using the AWS CLI<a name="w40aab9c25b7b5b3"></a>
+1. Choose **Create**\.
+
+### To create an invitation proposal using the AWS CLI<a name="w75aab9c25b7b5b3"></a>
 + Type a command similar to the following\. Replace the value of `Principal` with the AWS account ID that you want to invite\. Replace the value of `--member-id` with the value for the member in your account that submits the proposal\.
 
   ```
@@ -52,7 +54,7 @@ After you create the invitation proposal, use the first member that you created 
 
 1. Choose **Proposals**\.
 
-1. Under **Active proposals**, choose the **Proposal ID** to vote on\.
+1. Under **Active**, choose the **Proposal ID** to vote on\.
 
 1. Under **Vote on proposal**, select the member in your account to vote as\. If your account has multiple members, each member gets a vote\.
 
@@ -64,7 +66,7 @@ After you create the invitation proposal, use the first member that you created 
 
 To accept an invitation to create a member and join a network, the steps are similar whether you are creating a member in a Managed Blockchain network in a different AWS account or your own AWS account\. You first create the member as shown in the following procedures\. If you use the AWS CLI, make sure that you have the relevant information, including the Network ID and the Invitation ID that the network sent to your account\. When you create a member, you specify the name that identifies your member on the network\. You also specify the admin user and password to authenticate to your member certificate authority \(CA\)\.
 
-### To accept an invitation to create a member and join a network using the AWS Management Console<a name="w40aab9c25c11b5b1"></a>
+### To accept an invitation to create a member and join a network using the AWS Management Console<a name="w75aab9c25c11b5b1"></a>
 
 1. Open the Managed Blockchain console at [https://console\.aws\.amazon\.com/managedblockchain/](https://console.aws.amazon.com/managedblockchain/)\.
 
@@ -72,17 +74,15 @@ To accept an invitation to create a member and join a network, the steps are sim
 
 1. Select the invitation that you want to accept from the list, and then choose **Accept invitation**\. To view more information about the network you are invited to join, choose the network **Name** from the list
 
-1. Under **Join network**, configure your network member according to the following guidelines:
+1. Under **Create member and join network**, configure your network member according to the following guidelines:
 
    1. Enter a **Member name** that will be visible to all members and an optional **Description**\.
 
    1. Under **Hyperledger Fabric certificate authority \(CA\) configuration** specify a username and password to be used as the administrator on the Hyperledger Fabric CA\. Remember the user name and password\. You need them later any time that you create users and resources that need to authenticate\.
 
-   1. Choose **Create member and join network**\.
+1. Choose **Create member and join network**\.
 
-1. Choose **Create member**\.
-
-### To accept an invitation to create a member and join a network using the AWS CLI<a name="w40aab9c25c11b5b3"></a>
+### To accept an invitation to create a member and join a network using the AWS CLI<a name="w75aab9c25c11b5b3"></a>
 + Use the `create-member` command similar to the example below\. Replace the value of `--network-id` with the Network ID that you are joining and `--invitation-id` with the Invitation ID sent to your account from the network\.
 
   ```
@@ -102,24 +102,24 @@ To accept an invitation to create a member and join a network, the steps are sim
   }
   ```
 
-### Additional Steps to Configure a Member<a name="w40aab9c25c11b7"></a>
+### Additional Steps to Configure a Member<a name="w75aab9c25c11b7"></a>
 
 After you create the member, perform the following steps to configure the member\. As you perform the steps, replace values with those specific to your member configuration, including the Member ID returned by the previous command\. The Network ID and `OrderingServiceEndpoint` are the same for all members\.
 + [Step 2: Create and Configure the Interface VPC Endpoint](get-started-create-endpoint.md)
 
   This step is only required if you are creating the second member in a different AWS account\.
-+ [Step 3: Create an Amazon EC2 Instance and Set Up the Hyperledger Fabric Client](get-started-create-client.md)
++ [Step 3: Create a Peer Node in Your Membership](get-started-create-peer-node.md)
++ [Step 4: Create an Amazon EC2 Instance and Set Up the Hyperledger Fabric Client](get-started-create-client.md)
 
-  If you are creating an additional member in the same AWS account, and you already have a Hyperledger Fabric client, you can skip most of these steps\. However, you should verify connectivity to the Hyperledger Fabric CA as described in [Step 3\.2: Set Up the Hyperledger Fabric CA Client](get-started-create-client.md#get-started-client-setup-CA-client), using the new CA endpoint for the new member\.
-+ [Step 4: Enroll an Administrative User](get-started-enroll-admin.md)
-+ [Step 5: Create a Peer Node in Your Membership](get-started-create-peer-node.md)
+  If you are creating an additional member in the same AWS account, and you already have a Hyperledger Fabric client, you can skip most of these steps\. However, you should verify connectivity to the Hyperledger Fabric CA as described in [Step 4\.2: Set Up the Hyperledger Fabric CA Client](get-started-create-client.md#get-started-client-setup-CA-client), using the new CA endpoint for the new member\.
++ [Step 5: Enroll an Administrative User](get-started-enroll-admin.md)
 
 ## Step 8\.4: Share Artifacts and Information with the Network Creator<a name="get-started-joint-channel-artifact-exchange"></a>
 
 Before a shared channel can be created, the following artifacts and information need to be shared with `org1` by `org2`:
-+ **org1 needs the org2 administrative certificate**—This certificate is saved the `/home/ec2-user/admin-msp/admincerts` directory on org2's Hyperledger Fabric client after [Step 4: Enroll an Administrative User](get-started-enroll-admin.md)\. This is referenced in the following steps as `Org2AdminCerts`
++ **org1 needs the org2 administrative certificate**—This certificate is saved the `/home/ec2-user/admin-msp/admincerts` directory on org2's Hyperledger Fabric client after [Step 5: Enroll an Administrative User](get-started-enroll-admin.md)\. This is referenced in the following steps as `Org2AdminCerts`
 + **org1 needs the org2 root CA**—This certificate is saved to org2's `/home/ec2-user/admin-msp/cacerts` directory on org2's Hyperledger Fabric client after the same step as previous\. This is referenced in the following steps as `Org2CACerts`
-+ **org1 needs the `Endpoint` of the peer node that will join the channel**—This `Endpoint` value is output by the `get-node` command after [Step 5: Create a Peer Node in Your Membership](get-started-create-peer-node.md) is complete\.
++ **org1 needs the `Endpoint` of the peer node that will join the channel**—This `Endpoint` value is output by the `get-node` command after [Step 3: Create a Peer Node in Your Membership](get-started-create-peer-node.md) is complete\.
 
 ## Step 8\.5: The Channel Creator \(org1\) Creates Artifacts for org2's MSP<a name="get-started-joint-channel-create-org2msp"></a>
 
@@ -168,7 +168,7 @@ The channel creator creates this file on the Hyperledger File client\. If you co
 
 Use a text editor to create a file with the following contents and save it as `configtx.yaml` on your Hyperledger File client\.
 + Replace *Org1MemberID* with the MemberID of the first member that you created when you [created the network](get-started-create-network.md)\. For example, *m\-K46ICRRXJRCGRNNS4ES4XUUS5A*\.
-+ For `&Org1`, the `MSPDir` is set to the same directory location, `/opt/home/admin-msp`, that you established using the `CORE_PEER_MSPCONFIGPATH` environment variable in the Docker container for the Hyperledger Fabric CLI in [step 3\.4](get-started-create-client.md#get-started-client-configure-peer-cli) above\.
++ For `&Org1`, the `MSPDir` is set to the same directory location, `/opt/home/admin-msp`, that you established using the `CORE_PEER_MSPCONFIGPATH` environment variable in the Docker container for the Hyperledger Fabric CLI in [step 4\.4](get-started-create-client.md#get-started-client-configure-peer-cli) above\.
 + Replace *Org2MemberID* with the MemberID of the second member that you created in [step 8\.4](#get-started-joint-channel-invite-member)\. For example, *m\-J46DNSFRTVCCLONS9DT5TTLS2A*\.
 + For `&Org2`, the `MSPDir` is set to the same directory location, `/opt/home/org2-msp`, that you created and copied artifacts to in [step 8\.4](#get-started-joint-channel-create-org2msp)\.
 
@@ -312,7 +312,7 @@ docker exec cli configtxgen \
 
 ## Step 8\.7: Create the Channel<a name="get-started-joint-channel-create-channel"></a>
 
-The channel creator \(org1\) uses the following command on their Hyperledger Fabric client to submit the channel to the orderer, which creates the channel `ourchannel`\. The command example assumes that Docker environment variables have been configured as described in [Step 3\.4: Configure and Run Docker Compose to Start the Hyperledger Fabric CLI](get-started-create-client.md#get-started-client-configure-peer-cli) and that the `$ORDERER` environment variable has been set on the client\.
+The channel creator \(org1\) uses the following command on their Hyperledger Fabric client to submit the channel to the orderer, which creates the channel `ourchannel`\. The command example assumes that Docker environment variables have been configured as described in [Step 4\.4: Configure and Run Docker Compose to Start the Hyperledger Fabric CLI](get-started-create-client.md#get-started-client-configure-peer-cli) and that the `$ORDERER` environment variable has been set on the client\.
 
 ```
 docker exec cli peer channel create -c ourchannel \
