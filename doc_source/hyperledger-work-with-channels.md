@@ -16,7 +16,7 @@ After the channel is created, channel members, including the channel creator, do
 
 **To create and join a Hyperledger Fabric channel on Managed Blockchain**
 
-The following steps specify file locations in terms of both the Hyperledger Fabric client machine's file system and the Hyperledger Fabric CLI Docker container file system, as appropriate\. When the CLI is installed, the Docker Compose configuration file maps these locations to one another\. For more information, see [step 3\.4](get-started-create-client.md#get-started-client-configure-peer-cli) in the [Getting Started](managed-blockchain-get-started-tutorial.md) tutorial of this guide\.
+The following steps specify file locations in terms of both the Hyperledger Fabric client machine's file system and the Hyperledger Fabric CLI Docker container file system, as appropriate\. When the CLI is installed, the Docker Compose configuration file maps these locations to one another\. For more information, see [step 4\.4](get-started-create-client.md#get-started-client-configure-peer-cli) in the [Getting Started](managed-blockchain-get-started-tutorial.md) tutorial of this guide\.
 
 In the following examples, the client machine directory `/home/ec2-user` is mapped to the container directory `/opt/home`\. In steps where you save artifacts, the steps use the client machine file system\. In steps where you reference artifacts in CLI commands and configuration files, the steps use the container file system\.
 

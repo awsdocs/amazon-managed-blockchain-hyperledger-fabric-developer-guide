@@ -42,7 +42,7 @@ The steps below require that you have the following:
   + [Create a Hyperledger Fabric Blockchain Network on Amazon Managed Blockchain](create-network.md)
   + [Create an Interface VPC Endpoint for Hyperledger Fabric on Amazon Managed Blockchain](managed-blockchain-endpoints.md)
   + [Work with Hyperledger Fabric Peer Nodes on Managed Blockchain](managed-blockchain-hyperledger-peer-nodes.md)
-  + [Step 4: Create an Amazon EC2 Instance and Set Up the Hyperledger Fabric Client](get-started-create-client.md)\. Optionally, modify [step 3\.4](get-started-create-client.md#get-started-client-configure-peer-cli) when launching the Docker container to establish CLI variables demonstrated in the install and instantiate steps below\.
+  + [Step 4: Create an Amazon EC2 Instance and Set Up the Hyperledger Fabric Client](get-started-create-client.md)\. Optionally, modify [step 4\.4](get-started-create-client.md#get-started-client-configure-peer-cli) when launching the Docker container to establish CLI variables demonstrated in the install and instantiate steps below\.
 + You must be a Hyperledger Fabric admin to install and instantiate chaincode\. For more information, see [Register and Enroll a Hyperledger Fabric Admin](managed-blockchain-hyperledger-create-admin.md)\.
 
 The working directory of a typical Java chaincode project using Gradle on a Hyperledger Fabric client machine looks similar to the directory structure shown in the following diagram\. The `src` directory includes the chaincode source\. The `build.gradle` file declares all the dependencies and defines the scripted tasks\. The steps below assume this directory structure\.
@@ -296,7 +296,7 @@ Use the Hyperledger Fabric CLI to package the Java chaincode project and copy it
 1. Running the Hyperledger Fabric `install` command on the client installs the chaincode on the peer node\. The following example demonstrates an `install` command using the following flags\.
    + The `-o` flag specifies the ordering service endpoint for the member\.
    + The `-l` flag specifies that the chaincode language is `java`\.
-   + The `--cafile` flag specifies the location of the certificate for the ordering service that you copied when you set up the Hyperledger Fabric admin\. For more information, see [step 4\.1](get-started-enroll-admin.md#get-started-enroll-member-create-cert) in the [Getting Started](managed-blockchain-get-started-tutorial.md) tutorial\.
+   + The `--cafile` flag specifies the location of the certificate for the ordering service that you copied when you set up the Hyperledger Fabric admin\. For more information, see [step 5\.1](get-started-enroll-admin.md#get-started-enroll-member-create-cert) in the [Getting Started](managed-blockchain-get-started-tutorial.md) tutorial\.
    + The `--tls` flag specifies that communication with the ordering service uses TLS\.
    + The `-p` flag specifies the location of the chaincode on the client machine\. When installing Java chaincode, this must be an absolute path\.
    + The `-n` and `-v` options establish the name and version of the chaincode\. You'll reference this name and version when you instantiate the chaincode in the next step\. 
@@ -328,7 +328,7 @@ Running the Hyperledger Fabric CLI `instantiate` command directs the peer node t
 1. Running the Hyperledger Fabric CLI `instantiate` command on the client instantiates the chaincode on the peer\. The following example demonstrates an `instantiate` command\.
    + The `-o` flag specifies the ordering service endpoint for the member\.
    + The `-l` flag specifies that the chaincode language is `java`\.
-   + The `--cafile` flag specifies the location of the certificate for the ordering service that you copied when you set up the Hyperledger Fabric admin\. For more information, see [step 4\.1](get-started-enroll-admin.md#get-started-enroll-member-create-cert) in the [Getting Started](managed-blockchain-get-started-tutorial.md) tutorial\.
+   + The `--cafile` flag specifies the location of the certificate for the ordering service that you copied when you set up the Hyperledger Fabric admin\. For more information, see [step 5\.1](get-started-enroll-admin.md#get-started-enroll-member-create-cert) in the [Getting Started](managed-blockchain-get-started-tutorial.md) tutorial\.
    + The `--tls` flag specifies that communication with the ordering service uses TLS\.
    + The `-C` flag specifies the channel on which to instantiate the chaincode\.
    + The `-c` flag specifies the constructor message in JSON format that initializes object values for [the sample chaincode](https://github.com/hyperledger/fabric-samples/blob/v1.4.6/chaincode/chaincode_example02/java/src/main/java/org/hyperledger/fabric/example/SimpleChaincode.java) that you installed on the peer node in the previous step\. `a` is set to a value of `100` and `b` is set to a value of `200`\.

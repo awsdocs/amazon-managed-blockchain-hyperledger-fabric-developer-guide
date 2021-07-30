@@ -12,7 +12,7 @@ When you create a new member, you can choose one of the following types of KMS k
 
 When you access networks, members, and peer nodes, Managed Blockchain decrypts the data transparently\. You don't have to change any code or applications to use or manage encrypted data\. All Managed Blockchain operations work seamlessly on your encrypted data\.
 
-You can specify a KMS key when you create a new member by using the Managed Blockchain API or the AWS Command Line Interface \(AWS CLI\)\. For more information, see the [MemberConfiguration](https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/API_MemberConfiguration.html) data type in the *Amazon Managed Blockchain API Reference*\. You can pass this data type as an input parameter to the [CreateMember](https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/API_CreateMember.html) or [CreateNetwork](https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/API_CreateNetwork.html) API operations\.
+You can specify a KMS key when you create a new member by using the AWS Management Console, the Managed Blockchain API, or the AWS Command Line Interface \(AWS CLI\)\. For more information, see the [MemberConfiguration](https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/API_MemberConfiguration.html) data type in the *Amazon Managed Blockchain API Reference*\. You can pass this data type as an input parameter to the [CreateMember](https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/API_CreateMember.html) or [CreateNetwork](https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/API_CreateNetwork.html) API operations\.
 
 **Note**  
 By default, Amazon Managed Blockchain automatically enables encryption at rest using AWS owned keys at no additional charge\. However, AWS KMS charges apply for using a customer managed key\. For information about pricing, see [AWS Key Management Service pricing](https://aws.amazon.com/kms/pricing)\.
@@ -92,7 +92,7 @@ Consider the following when you are using encryption at rest in Hyperledger Fabr
 
 ## Using Customer Managed Keys in Managed Blockchain<a name="managed-blockchain-encryption-at-rest.using-cust-keys"></a>
 
-You can use the Managed Blockchain API or the AWS Command Line Interface \(AWS CLI\) to specify the AWS KMS key for new members in Managed Blockchain\. The following topics describe how to manage and monitor the usage of your customer managed keys in Managed Blockchain\.
+You can use the Managed Blockchain console, the Managed Blockchain API, or the AWS CLI to specify the AWS KMS key for new members in Managed Blockchain\. The following topics describe how to manage and monitor the usage of your customer managed keys in Managed Blockchain\.
 
 **Topics**
 + [Prerequisites](#managed-blockchain-encryption-at-rest.using-cust-keys.prereqs)
@@ -141,7 +141,7 @@ To use this policy, replace *aws\-region* and *111122223333* in the example with
 
 ### Specifying a Customer Managed Key<a name="managed-blockchain-encryption-at-rest.using-cust-keys.specify"></a>
 
-You can specify the Amazon Resource Name \(ARN\) of a customer managed KMS key when you create a new member by using the Managed Blockchain API or the AWS Command Line Interface \(AWS CLI\)\. The following is an example of a KMS key ARN\.
+You can specify the Amazon Resource Name \(ARN\) of a customer managed KMS key when you create a new member by using the Managed Blockchain console, the Managed Blockchain API, or the AWS CLI\. The following is an example of a KMS key ARN\.
 
 ```
 arn:aws:kms:us-east-1:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
