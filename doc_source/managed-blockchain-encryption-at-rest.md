@@ -104,7 +104,7 @@ You can use the Managed Blockchain console, the Managed Blockchain API, or the A
 Before you can protect Managed Blockchain resources with a customer managed key, you must first create the key in AWS KMS\. You must also specify a key policy that allows Managed Blockchain to create grants on that AWS KMS key on your behalf\.
 
 **Creating a Customer Managed Key**  
-To create a customer managed key, follow the steps in [Creating symmetric customer managed keys](https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html#create-symmetric-cmk) in the *AWS Key Management Service Developer Guide*\. Managed Blockchain doesn't support [asymmetric keys](https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html)\.
+To create a customer managed key, follow the steps in [Creating symmetric KMS keys](https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html#create-symmetric-cmk) in the *AWS Key Management Service Developer Guide*\. Managed Blockchain doesn't support [asymmetric keys](https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html)\.
 
 **Setting a Key Policy**  
 Key policies are the primary way to control access to customer managed keys in AWS KMS\. Every customer managed key must have exactly one key policy\. The statements in the key policy document determine who has permission to use the AWS KMS key and how they can use it\. For more information, see [Using key policies in AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html) in the *AWS Key Management Service Developer Guide*\.  
@@ -151,7 +151,7 @@ For more information, see the [MemberConfiguration](https://docs.aws.amazon.com/
 
 ### Monitoring Your Customer Managed Keys<a name="managed-blockchain-encryption-at-rest.using-cust-keys.monitor"></a>
 
-If you use a customer managed key to protect your Amazon Managed Blockchain resources, you can use [AWS CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html) or [Amazon CloudWatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html) to track the requests that Managed Blockchain sends to AWS KMS on your behalf\. For more information, see [Monitoring customer master keys](https://docs.aws.amazon.com/kms/latest/developerguide/monitoring-overview.html) in the *AWS Key Management Service Developer Guide*\.
+If you use a customer managed key to protect your Amazon Managed Blockchain resources, you can use [AWS CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html) or [Amazon CloudWatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html) to track the requests that Managed Blockchain sends to AWS KMS on your behalf\. For more information, see [Monitoring AWS KMS keys](https://docs.aws.amazon.com/kms/latest/developerguide/monitoring-overview.html) in the *AWS Key Management Service Developer Guide*\.
 
 The following example is a CloudTrail log entry for the `CreateGrant` API operation\. In addition to this event from Managed Blockchain, you can expect AWS KMS calls for your customer managed key from Amazon EC2, Amazon EBS, and AWS Secrets Manager\. These AWS services call other AWS KMS operations such as `GenerateDataKey`, `Decrypt`, and `Encrypt` on behalf of Managed Blockchain\.
 
