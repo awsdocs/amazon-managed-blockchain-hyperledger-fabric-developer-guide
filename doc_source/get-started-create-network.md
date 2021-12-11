@@ -17,7 +17,7 @@ Create the network using the AWS CLI or Managed Blockchain console according to 
 
 1. Under **Blockchain frameworks**:
 
-   1. Select the blockchain framework to use\. This tutorial is based on **Hyperledger Fabric version **\.
+   1. Select the blockchain framework to use\. This tutorial is based on **Hyperledger Fabric version 1.4**\.
 
    1. Select the **Network edition** to use\. The network edition determines attributes of the network, such as the maximum number of members, nodes per member, and transaction throughput\. Different editions have different rates associated with the membership\. For more information, see [Amazon Managed Blockchain Pricing](https://aws.amazon.com/managed-blockchain/pricing)\.
 
