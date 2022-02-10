@@ -9,7 +9,7 @@ Run the following command to install example chaincode on the peer node:
 ```
 docker exec cli peer chaincode install \
 -n mycc -v v0 \
--p github.com/chaincode_example02/go
+-p /opt/gopath/src/github.com/chaincode_example02/go
 ```
 
 ## Step 7\.2: Instantiate Chaincode<a name="get-started-create-instantiate-chaincode"></a>
