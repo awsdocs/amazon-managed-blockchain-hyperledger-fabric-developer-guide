@@ -4,7 +4,7 @@ You can use peer node metrics to track the activity and health of Hyperledger Fa
 
 In addition to using peer node metrics, you optionally can enable CloudWatch Logs for peer nodes and for instances of chaincode running on a peer node to view **Peer node logs** and **Chaincode logs**\. These logs are useful for troubleshooting and analysis of chaincode activity\. For more information, see [Monitoring Hyperledger Fabric on Managed Blockchain Using CloudWatch Logs](monitoring-cloudwatch-logs.md)\.
 
-Managed Blockchain collects the following metrics for each peer node in the `aws/managedblockchain` namespace\. Available metrics in Managed Blockchain correspond to [Hyperledger Fabric metrics](https://hyperledger-fabric.readthedocs.io/en/release-1.4/metrics_reference.html)\.
+Managed Blockchain collects the following metrics for each peer node in the `aws/managedblockchain` namespace\. Available metrics in Managed Blockchain correspond to [Hyperledger Fabric metrics](https://hyperledger-fabric.readthedocs.io/en/release-2.2/metrics_reference.html)\.
 
 
 | Metric name | Description | 

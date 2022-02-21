@@ -24,11 +24,238 @@ In the following examples, the client machine directory `/home/ec2-user` is mapp
 
 1. On your Hyperledger Fabric client machine, create a configuration file in yaml format named `configtx.yaml`\. Save this file to a file location on your Hyperledger Fabric client machine that is mapped to the CLI container file system\. The following steps use `/home/ec2-user`, which is mapped to `/opt/home`\.
 
-   Use the examples below as a starting point\. For more information about configuration files, see [Channel configuration \(configtx\)](https://hyperledger-fabric.readthedocs.io/en/release-1.4/configtx.html) in the Hyperledger Fabric documentation\. Replace the following configuration parameters as appropriate for your channel, and add sections as required for additional members\.
+   Use the examples below as a starting point\. For more information about configuration files, see [Channel configuration \(configtx\)](https://hyperledger-fabric.readthedocs.io/en/release-2.2/configtx.html) in the Hyperledger Fabric documentation\. Replace the following configuration parameters as appropriate for your channel, and add sections as required for additional members\.
    + *Org*<n>*MemberID* is the respective member ID for each channel participant, for example, `m-K46ICRRXJRCGRNNS4ES4XUUS5A`\.
-   + *Org*<n>*AdminMSPDir* is the Docker container file system directory where security artifacts for each corresponding member are saved\. For example, *opt/home/Org2AdminMSP* references artifacts saved to `/home/ec2-user/Org2AdminMSP` on the channel creator's client machine\.
+   + *Org*<n>*AdminMSPDir* is the Docker container file system directory where security artifacts for each corresponding member are saved\. For example, */opt/home/Org2AdminMSP* references artifacts saved to `/home/ec2-user/Org2AdminMSP` on the channel creator's client machine\.
 
-   The configtx file for a Hyperledger Fabric 1\.4 network includes application settings to enable expanded features\. These settings are not supported in Hyperledger Fabric 1\.2 channels\. Examples for version 1\.2 and 1\.4 networks are provided below\.
+   The configtx file for a network on Hyperledger Fabric 1\.4 or later includes application settings to enable expanded features\. These settings are not supported in Hyperledger Fabric 1\.2 channels\. Examples for version 1\.2, 1\.4, and 2\.2 networks are provided below\.
+
+------
+#### [ Version 2\.2 ]
+
+   ```
+   ################################################################################
+   #
+   #   ORGANIZATIONS
+   #
+   #   This section defines the organizational identities that can be referenced
+   #   in the configuration profiles.
+   #
+   ################################################################################
+   Organizations:
+       # Org1 defines an MSP using the sampleconfig. It should never be used
+       # in production but may be used as a template for other definitions.
+       - &Org1
+           # Name is the key by which this org will be referenced in channel
+           # configuration transactions.
+           # Name can include alphanumeric characters as well as dots and dashes.
+           Name: Org1MemberID
+           # ID is the key by which this org's MSP definition will be referenced.
+           # ID can include alphanumeric characters as well as dots and dashes.
+           ID: Org1MemberID
+           # SkipAsForeign can be set to true for org definitions which are to be
+           # inherited from the orderer system channel during channel creation.  This
+           # is especially useful when an admin of a single org without access to the
+           # MSP directories of the other orgs wishes to create a channel.  Note
+           # this property must always be set to false for orgs included in block
+           # creation.
+           SkipAsForeign: false
+           Policies: &Org1Policies
+               Readers:
+                   Type: Signature
+                   Rule: "OR('Org1.member', 'Org2.member')"
+                   # If your MSP is configured with the new NodeOUs, you might
+                   # want to use a more specific rule like the following:
+                   # Rule: "OR('Org1.admin', 'Org1.peer', 'Org1.client')"
+               Writers:
+                   Type: Signature
+                   Rule: "OR('Org1.member', 'Org2.member')"
+                   # If your MSP is configured with the new NodeOUs, you might
+                   # want to use a more specific rule like the following:
+                   # Rule: "OR('Org1.admin', 'Org1.client')"
+               Admins:
+                   Type: Signature
+                   Rule: "OR('Org1.admin')"
+           # MSPDir is the filesystem path which contains the MSP configuration.
+           MSPDir: /opt/home/Org1AdminMSP
+           # AnchorPeers defines the location of peers which can be used for
+           # cross-org gossip communication. Note, this value is only encoded in
+           # the genesis block in the Application section context.
+           AnchorPeers:
+               - Host: 127.0.0.1
+                 Port: 7051
+       - &Org2
+           Name: Org2MemberID
+           ID: Org2MemberID
+           SkipAsForeign: false
+           Policies: &Org2Policies
+               Readers:
+                   Type: Signature
+                   Rule: "OR('Org2.member', 'Org1.member')"
+                   # If your MSP is configured with the new NodeOUs, you might
+                   # want to use a more specific rule like the following:
+                   # Rule: "OR('Org1.admin', 'Org1.peer', 'Org1.client')"
+               Writers:
+                   Type: Signature
+                   Rule: "OR('Org2.member', 'Org1.member')"
+                   # If your MSP is configured with the new NodeOUs, you might
+                   # want to use a more specific rule like the following:
+                   # Rule: "OR('Org1.admin', 'Org1.client')"
+               Admins:
+                   Type: Signature
+                   Rule: "OR('Org2.admin')"
+           # MSPDir is the filesystem path which contains the MSP configuration.
+           MSPDir: /opt/home/Org2AdminMSP
+           # AnchorPeers defines the location of peers which can be used for
+           # cross-org gossip communication. Note, this value is only encoded in
+           # the genesis block in the Application section context.
+           AnchorPeers:
+               - Host: 127.0.0.1
+                 Port: 7052
+   ################################################################################
+   #
+   #   CAPABILITIES
+   #
+   #   This section defines the capabilities of fabric network. This is a new
+   #   concept as of v1.1.0 and should not be utilized in mixed networks with
+   #   v1.0.x peers and orderers.  Capabilities define features which must be
+   #   present in a fabric binary for that binary to safely participate in the
+   #   fabric network.  For instance, if a new MSP type is added, newer binaries
+   #   might recognize and validate the signatures from this type, while older
+   #   binaries without this support would be unable to validate those
+   #   transactions.  This could lead to different versions of the fabric binaries
+   #   having different world states.  Instead, defining a capability for a channel
+   #   informs those binaries without this capability that they must cease
+   #   processing transactions until they have been upgraded.  For v1.0.x if any
+   #   capabilities are defined (including a map with all capabilities turned off)
+   #   then the v1.0.x peer will deliberately crash.
+   #
+   ################################################################################
+   Capabilities:
+       # Channel capabilities apply to both the orderers and the peers and must be
+       # supported by both.
+       # Set the value of the capability to true to require it.
+       # Note that setting a later Channel version capability to true will also
+       # implicitly set prior Channel version capabilities to true. There is no need
+       # to set each version capability to true (prior version capabilities remain
+       # in this sample only to provide the list of valid values).
+       Channel: &ChannelCapabilities
+           # V2.0 for Channel is a catchall flag for behavior which has been
+           # determined to be desired for all orderers and peers running at the v2.0.0
+           # level, but which would be incompatible with orderers and peers from
+           # prior releases.
+           # Prior to enabling V2.0 channel capabilities, ensure that all
+           # orderers and peers on a channel are at v2.0.0 or later.
+           V2_0: true
+       # Orderer capabilities apply only to the orderers, and may be safely
+       # used with prior release peers.
+       # Set the value of the capability to true to require it.
+       Orderer: &OrdererCapabilities
+           # V1.1 for Orderer is a catchall flag for behavior which has been
+           # determined to be desired for all orderers running at the v1.1.x
+           # level, but which would be incompatible with orderers from prior releases.
+           # Prior to enabling V2.0 orderer capabilities, ensure that all
+           # orderers on a channel are at v2.0.0 or later.
+           V2_0: true
+       # Application capabilities apply only to the peer network, and may be safely
+       # used with prior release orderers.
+       # Set the value of the capability to true to require it.
+       # Note that setting a later Application version capability to true will also
+       # implicitly set prior Application version capabilities to true. There is no need
+       # to set each version capability to true (prior version capabilities remain
+       # in this sample only to provide the list of valid values).
+       Application: &ApplicationCapabilities
+           # V2.0 for Application enables the new non-backwards compatible
+           # features and fixes of fabric v2.0.
+           # Prior to enabling V2.0 orderer capabilities, ensure that all
+           # orderers on a channel are at v2.0.0 or later.
+           V2_0: true
+   ################################################################################
+   #
+   #   CHANNEL
+   #
+   #   This section defines the values to encode into a config transaction or
+   #   genesis block for channel related parameters.
+   #
+   ################################################################################
+   Channel: &ChannelDefaults
+       # Policies defines the set of policies at this level of the config tree
+       # For Channel policies, their canonical path is
+       #   /Channel/<PolicyName>
+       Policies:
+           # Who may invoke the 'Deliver' API
+           Readers:
+               Type: ImplicitMeta
+               Rule: "ANY Readers"
+           # Who may invoke the 'Broadcast' API
+           Writers:
+               Type: ImplicitMeta
+               Rule: "ANY Writers"
+           # By default, who may modify elements at this config level
+           Admins:
+               Type: ImplicitMeta
+               Rule: "MAJORITY Admins"
+       # Capabilities describes the channel level capabilities, see the
+       # dedicated Capabilities section elsewhere in this file for a full
+       # description
+       Capabilities:
+           <<: *ChannelCapabilities
+   ################################################################################
+   #
+   #   APPLICATION
+   #
+   #   This section defines the values to encode into a config transaction or
+   #   genesis block for application-related parameters.
+   #
+   ################################################################################
+   Application: &ApplicationDefaults
+       # Organizations is the list of orgs which are defined as participants on
+       # the application side of the network
+       Organizations:
+       # Policies defines the set of policies at this level of the config tree
+       # For Application policies, their canonical path is
+       #   /Channel/Application/<PolicyName>
+       Policies: &ApplicationDefaultPolicies
+           LifecycleEndorsement:
+               Type: ImplicitMeta
+               Rule: "ANY Readers"
+           Endorsement:
+               Type: ImplicitMeta
+               Rule: "ANY Readers"
+           Readers:
+               Type: ImplicitMeta
+               Rule: "ANY Readers"
+           Writers:
+               Type: ImplicitMeta
+               Rule: "ANY Writers"
+           Admins:
+               Type: ImplicitMeta
+               Rule: "MAJORITY Admins"
+   
+       Capabilities:
+           <<: *ApplicationCapabilities
+   ################################################################################
+   #
+   #   PROFILES
+   #
+   #   Different configuration profiles may be encoded here to be specified as
+   #   parameters to the configtxgen tool. The profiles which specify consortiums
+   #   are to be used for generating the orderer genesis block. With the correct
+   #   consortium members defined in the orderer genesis block, channel creation
+   #   requests may be generated with only the org member names and a consortium
+   #   name.
+   #
+   ################################################################################
+   Profiles:
+       TwoOrgChannel:
+           <<: *ChannelDefaults
+           Consortium: AWSSystemConsortium
+           Application:
+               <<: *ApplicationDefaults
+               Organizations:
+                   - *Org1
+                   - *Org2
+   ```
 
 ------
 #### [ Version 1\.4 ]
@@ -226,7 +453,7 @@ In the following examples, the client machine directory `/home/ec2-user` is mapp
 
 ------
 
-1. The channel creator uses the Hyperledger Fabric CLI [configtxgen](https://hyperledger-fabric.readthedocs.io/en/release-1.4/commands/configtxgen.html) command as shown in the following example to write a channel creation transaction\.
+1. The channel creator uses the Hyperledger Fabric CLI [configtxgen](https://hyperledger-fabric.readthedocs.io/en/release-2.2/commands/configtxgen.html) command as shown in the following example to write a channel creation transaction\.
 
    Replace the following configuration parameters as appropriate for your channel\.
    + */opt/home/ourchannel\.pb* is the channel creation transaction file that the command creates\. Specify the file location using the container file system\.
@@ -241,7 +468,7 @@ In the following examples, the client machine directory `/home/ec2-user` is mapp
    --configPath /opt/home/
    ```
 
-1. The channel creator uses the Hyperledger Fabric CLI [channel create](https://hyperledger-fabric.readthedocs.io/en/release-1.4/commands/peerchannel.html#peer-channel-create) command to create a channel and write the genesis block to the orderer\. The `-f` option specifies the transaction file that you created in the previous step, and the `$ORDERER` environment variable in the example has been set to the endpoint of the network orderer for simplicity—for example, `orderer.n-MWY63ZJZU5HGNCMBQER7IN6OIU.managedblockchain.amazonaws.com:30001`\.
+1. The channel creator uses the Hyperledger Fabric CLI [channel create](https://hyperledger-fabric.readthedocs.io/en/release-2.2/commands/peerchannel.html#peer-channel-create) command to create a channel and write the genesis block to the orderer\. The `-f` option specifies the transaction file that you created in the previous step, and the `$ORDERER` environment variable in the example has been set to the endpoint of the network orderer for simplicity—for example, `orderer.n-MWY63ZJZU5HGNCMBQER7IN6OIU.managedblockchain.amazonaws.com:30001`\.
 
    ```
    docker exec cli peer channel create -c ourchannel \
@@ -251,7 +478,7 @@ In the following examples, the client machine directory `/home/ec2-user` is mapp
 
 1. To join a peer node to the channel, each member must fetch the channel genesis block from the orderer, write it to a file, and then reference that genesis block when they join their peer or peers\.
 
-   1. To get the channel genesis block, each member uses the Hyperledger Fabric CLI [peer channel fetch oldest](https://hyperledger-fabric.readthedocs.io/en/release-1.4/commands/peerchannel.html#peer-channel-fetch) command\. In the following example, the genesis block is written to a file in the container file system, */opt/home/ourchannel\.block*\. The `$ORDERER` variable is used in the same ways the previous step, and the `ourchannel` channel ID is specified\.
+   1. To get the channel genesis block, each member uses the Hyperledger Fabric CLI [peer channel fetch oldest](https://hyperledger-fabric.readthedocs.io/en/release-2.2/commands/peerchannel.html#peer-channel-fetch) command\. In the following example, the genesis block is written to a file in the container file system, */opt/home/ourchannel\.block*\. The `$ORDERER` variable is used in the same ways the previous step, and the `ourchannel` channel ID is specified\.
 
       ```
       docker exec cli peer channel fetch oldest /opt/home/ourchannel.block \
@@ -259,7 +486,7 @@ In the following examples, the client machine directory `/home/ec2-user` is mapp
       --cafile /opt/home/managedblockchain-tls-chain.pem --tls
       ```
 
-   1. Using the channel genesis block file created above, each member uses the Hyperledger Fabric [peer channel join](https://hyperledger-fabric.readthedocs.io/en/release-1.4/commands/peerchannel.html#peer-channel-join) command to join their member's peer node to the channel\. 
+   1. Using the channel genesis block file created above, each member uses the Hyperledger Fabric [peer channel join](https://hyperledger-fabric.readthedocs.io/en/release-2.2/commands/peerchannel.html#peer-channel-join) command to join their member's peer node to the channel\. 
 
       ```
       docker exec cli peer channel join -b /opt/home/ourchannel.block \

@@ -6,9 +6,9 @@ To create a private data collection, a peer creates a *private data definition* 
 
 Private data is stored on each peer node in a way that is accessible to the peer chaincode and logically distinct from other channel transaction data\. This helps ensure that channel members who are not specified in the private data definition cannot access the private data\.
 
-For more information about private data collections, see [Private Data](https://hyperledger-fabric.readthedocs.io/en/release-1.4/private-data/private-data.html#private-data) and the [Private Data architecture](https://hyperledger-fabric.readthedocs.io/en/release-1.4/private-data-arch.html) topic in Hyperledger Fabric documentation\.
+For more information about private data collections, see [Private Data](https://hyperledger-fabric.readthedocs.io/en/release-2.2/private-data/private-data.html#private-data) and the [Private Data architecture](https://hyperledger-fabric.readthedocs.io/en/release-2.2/private-data-arch.html) topic in the Hyperledger Fabric documentation\. Hyperledger Fabric version 2\.x introduces collection\-level endorsement policies that can override the endorsement policy set at the chaincode level\. To learn more, see [Sharing private data](https://hyperledger-fabric.readthedocs.io/en/release-2.2/private-data/private-data.html#sharing-private-data) in the Hyperledger Fabric documentation\.
 
-Private data collections with Managed Blockchainlong require the following:
+Private data collections with Amazon Managed Blockchain require the following:
 + A network created using Hyperledger Fabric version 1\.4 or later\.
 + A channel configuration that supports the latest features of your version\. The [multi\-member channel configuration](get-started-joint-channel.md#get-started-joint-channel-channel-configtx) featured in the [Getting Started](managed-blockchain-get-started-tutorial.md) tutorial of this guide enables the latest features\.
 + At least one anchor peer for each member that participates in the private data collection\. This is because Hyperledger Fabric uses the gossip protocol to distribute private data to authorized peers\. For more information, see [Add an Anchor Peer to a Channel](hyperledger-anchor-peers.md)\.

@@ -8,7 +8,7 @@ After the invitation proposal is approved, the invited account can create a memb
 
 Create a proposal to invite an AWS account to create a member and join the network according to the following procedures\. You need the AWS account ID of the member you want to invite\. You can also invite your own account to create an additional member\. If you are using the CLI, you also need the Network ID and Member ID that you created in [Step 1: Create the Network and First Member](get-started-create-network.md)\.
 
-### To create an invitation proposal using the AWS Management Console<a name="w75aab9c25b7b5b1"></a>
+### To create an invitation proposal using the AWS Management Console<a name="w79aab9c25b7b5b1"></a>
 
 1. Open the Managed Blockchain console at [https://console\.aws\.amazon\.com/managedblockchain/](https://console.aws.amazon.com/managedblockchain/)\.
 
@@ -26,7 +26,7 @@ The member who submits the proposal must also vote on it\. A Yes vote is not aut
 
 1. Choose **Create**\.
 
-### To create an invitation proposal using the AWS CLI<a name="w75aab9c25b7b5b3"></a>
+### To create an invitation proposal using the AWS CLI<a name="w79aab9c25b7b5b3"></a>
 + Type a command similar to the following\. Replace the value of `Principal` with the AWS account ID that you want to invite\. Replace the value of `--member-id` with the value for the member in your account that submits the proposal\.
 
   ```
@@ -66,7 +66,7 @@ After you create the invitation proposal, use the first member that you created 
 
 To accept an invitation to create a member and join a network, the steps are similar whether you are creating a member in a Managed Blockchain network in a different AWS account or your own AWS account\. You first create the member as shown in the following procedures\. If you use the AWS CLI, make sure that you have the relevant information, including the Network ID and the Invitation ID that the network sent to your account\. When you create a member, you specify the name that identifies your member on the network\. You also specify the admin user and password to authenticate to your member certificate authority \(CA\)\.
 
-### To accept an invitation to create a member and join a network using the AWS Management Console<a name="w75aab9c25c11b5b1"></a>
+### To accept an invitation to create a member and join a network using the AWS Management Console<a name="w79aab9c25c11b5b1"></a>
 
 1. Open the Managed Blockchain console at [https://console\.aws\.amazon\.com/managedblockchain/](https://console.aws.amazon.com/managedblockchain/)\.
 
@@ -82,7 +82,7 @@ To accept an invitation to create a member and join a network, the steps are sim
 
 1. Choose **Create member and join network**\.
 
-### To accept an invitation to create a member and join a network using the AWS CLI<a name="w75aab9c25c11b5b3"></a>
+### To accept an invitation to create a member and join a network using the AWS CLI<a name="w79aab9c25c11b5b3"></a>
 + Use the `create-member` command similar to the example below\. Replace the value of `--network-id` with the Network ID that you are joining and `--invitation-id` with the Invitation ID sent to your account from the network\.
 
   ```
@@ -102,7 +102,7 @@ To accept an invitation to create a member and join a network, the steps are sim
   }
   ```
 
-### Additional Steps to Configure a Member<a name="w75aab9c25c11b7"></a>
+### Additional Steps to Configure a Member<a name="w79aab9c25c11b7"></a>
 
 After you create the member, perform the following steps to configure the member\. As you perform the steps, replace values with those specific to your member configuration, including the Member ID returned by the previous command\. The Network ID and `OrderingServiceEndpoint` are the same for all members\.
 + [Step 2: Create and Configure the Interface VPC Endpoint](get-started-create-endpoint.md)
@@ -162,15 +162,15 @@ If you created this configtx file earlier, delete the old file, rename it, or re
 
 ## Step 8\.6: Create configtx for the Multi\-Member Channel<a name="get-started-joint-channel-channel-configtx"></a>
 
-The `configtx.yaml` file contains details of the channel configuration\. For more information, see [Channel Configuration \(configtx\)](https://hyperledger-fabric.readthedocs.io/en/release-1.4/configtx.html) in the Hyperledger Fabric documentation\.
+The `configtx.yaml` file contains details of the channel configuration\. For more information, see [Channel Configuration \(configtx\)](https://hyperledger-fabric.readthedocs.io/en/release-2.2/configtx.html) in the Hyperledger Fabric documentation\.
 
 The channel creator creates this file on the Hyperledger File client\. If you compare this file to the file created in [Step 6\.1: Create configtx for Hyperledger Fabric Channel Creation](get-started-create-channel.md#get-started-create-channel-configtx), you see that this `configtx.yaml` specifies two members in the channel\.
 
 Use a text editor to create a file with the following contents and save it as `configtx.yaml` on your Hyperledger File client\.
 + Replace *Org1MemberID* with the MemberID of the first member that you created when you [created the network](get-started-create-network.md)\. For example, *m\-K46ICRRXJRCGRNNS4ES4XUUS5A*\.
 + For `&Org1`, the `MSPDir` is set to the same directory location, `/opt/home/admin-msp`, that you established using the `CORE_PEER_MSPCONFIGPATH` environment variable in the Docker container for the Hyperledger Fabric CLI in [step 4\.4](get-started-create-client.md#get-started-client-configure-peer-cli) above\.
-+ Replace *Org2MemberID* with the MemberID of the second member that you created in [step 8\.4](#get-started-joint-channel-invite-member)\. For example, *m\-J46DNSFRTVCCLONS9DT5TTLS2A*\.
-+ For `&Org2`, the `MSPDir` is set to the same directory location, `/opt/home/org2-msp`, that you created and copied artifacts to in [step 8\.4](#get-started-joint-channel-create-org2msp)\.
++ Replace *Org2MemberID* with the MemberID of the second member that you created in [step 8\.3](#get-started-joint-channel-invite-member)\. For example, *m\-J46DNSFRTVCCLONS9DT5TTLS2A*\.
++ For `&Org2`, the `MSPDir` is set to the same directory location, `/opt/home/org2-msp`, that you created and copied artifacts to in [step 8\.5](#get-started-joint-channel-create-org2msp)\.
 
 **Important**  
 This file is sensitive\. Artifacts from pasting can cause the file to fail with marshalling errors\. We recommend using `emacs` to edit it\. You can also use `VI`, but before using `VI`, enter `:set paste`, press `i` to enter insert mode, paste the contents, press escape, and then enter `:set nopaste` before saving\.
@@ -178,34 +178,82 @@ This file is sensitive\. Artifacts from pasting can cause the file to fail with 
 ```
 ################################################################################
 #
-# Section: Organizations
+#   ORGANIZATIONS
 #
-# - This section defines the different organizational identities which will
-# be referenced later in the configuration.
+#   This section defines the organizational identities that can be referenced
+#   in the configuration profiles.
 #
 ################################################################################
 Organizations:
+    # Org1 defines an MSP using the sampleconfig. It should never be used
+    # in production but may be used as a template for other definitions.
     - &Org1
-        # member id defines the organization
+        # Name is the key by which this org will be referenced in channel
+        # configuration transactions.
+        # Name can include alphanumeric characters as well as dots and dashes.
         Name: Org1MemberID
-        # ID to load the MSP definition as
+        # ID is the key by which this org's MSP definition will be referenced.
+        # ID can include alphanumeric characters as well as dots and dashes.
         ID: Org1MemberID
-        #msp dir of org1 in the docker container
+        # SkipAsForeign can be set to true for org definitions which are to be
+        # inherited from the orderer system channel during channel creation.  This
+        # is especially useful when an admin of a single org without access to the
+        # MSP directories of the other orgs wishes to create a channel.  Note
+        # this property must always be set to false for orgs included in block
+        # creation.
+        SkipAsForeign: false
+        Policies: &Org1Policies
+            Readers:
+                Type: Signature
+                Rule: "OR('Org1.member', 'Org2.member')"
+                # If your MSP is configured with the new NodeOUs, you might
+                # want to use a more specific rule like the following:
+                # Rule: "OR('Org1.admin', 'Org1.peer', 'Org1.client')"
+            Writers:
+                Type: Signature
+                Rule: "OR('Org1.member', 'Org2.member')"
+                # If your MSP is configured with the new NodeOUs, you might
+                # want to use a more specific rule like the following:
+                # Rule: "OR('Org1.admin', 'Org1.client')"
+            Admins:
+                Type: Signature
+                Rule: "OR('Org1.admin')"
+        # MSPDir is the filesystem path which contains the MSP configuration.
         MSPDir: /opt/home/admin-msp
-        # AnchorPeers defines the location of peers which can be used
-        # for cross org gossip communication. Note, this value is only
-        # encoded in the genesis block in the Application section context
+        # AnchorPeers defines the location of peers which can be used for
+        # cross-org gossip communication. Note, this value is only encoded in
+        # the genesis block in the Application section context.
         AnchorPeers:
-            - Host:
-              Port:
+            - Host: 127.0.0.1
+              Port: 7051
     - &Org2
         Name: Org2MemberID
         ID: Org2MemberID
-        #msp dir of org2 in the docker container
-        MSPDir: /opt/home/Org2AdminMSPDir
+        SkipAsForeign: false
+        Policies: &Org2Policies
+            Readers:
+                Type: Signature
+                Rule: "OR('Org2.member', 'Org1.member')"
+                # If your MSP is configured with the new NodeOUs, you might
+                # want to use a more specific rule like the following:
+                # Rule: "OR('Org1.admin', 'Org1.peer', 'Org1.client')"
+            Writers:
+                Type: Signature
+                Rule: "OR('Org2.member', 'Org1.member')"
+                # If your MSP is configured with the new NodeOUs, you might
+                # want to use a more specific rule like the following:
+                # Rule: "OR('Org1.admin', 'Org1.client')"
+            Admins:
+                Type: Signature
+                Rule: "OR('Org2.admin')"
+        # MSPDir is the filesystem path which contains the MSP configuration.
+        MSPDir: /opt/home/org2-msp
+        # AnchorPeers defines the location of peers which can be used for
+        # cross-org gossip communication. Note, this value is only encoded in
+        # the genesis block in the Application section context.
         AnchorPeers:
-            - Host: 
-              Port:
+            - Host: 127.0.0.1
+              Port: 7052
 ################################################################################
 #
 #   CAPABILITIES
@@ -234,19 +282,23 @@ Capabilities:
     # to set each version capability to true (prior version capabilities remain
     # in this sample only to provide the list of valid values).
     Channel: &ChannelCapabilities
-        # V1.4.3 for Channel is a catchall flag for behavior which has been
-        # determined to be desired for all orderers and peers running at the v1.4.3
+        # V2.0 for Channel is a catchall flag for behavior which has been
+        # determined to be desired for all orderers and peers running at the v2.0.0
         # level, but which would be incompatible with orderers and peers from
         # prior releases.
-        # Prior to enabling V1.4.3 channel capabilities, ensure that all
-        # orderers and peers on a channel are at v1.4.3 or later.
-        V1_4_3: true
-        # V1.3 for Channel enables the new non-backwards compatible
-        # features and fixes of fabric v1.3
-        V1_3: false
-        # V1.1 for Channel enables the new non-backwards compatible
-        # features and fixes of fabric v1.1
-        V1_1: false
+        # Prior to enabling V2.0 channel capabilities, ensure that all
+        # orderers and peers on a channel are at v2.0.0 or later.
+        V2_0: true
+    # Orderer capabilities apply only to the orderers, and may be safely
+    # used with prior release peers.
+    # Set the value of the capability to true to require it.
+    Orderer: &OrdererCapabilities
+        # V1.1 for Orderer is a catchall flag for behavior which has been
+        # determined to be desired for all orderers running at the v1.1.x
+        # level, but which would be incompatible with orderers from prior releases.
+        # Prior to enabling V2.0 orderer capabilities, ensure that all
+        # orderers on a channel are at v2.0.0 or later.
+        V2_0: true
     # Application capabilities apply only to the peer network, and may be safely
     # used with prior release orderers.
     # Set the value of the capability to true to require it.
@@ -255,44 +307,90 @@ Capabilities:
     # to set each version capability to true (prior version capabilities remain
     # in this sample only to provide the list of valid values).
     Application: &ApplicationCapabilities
-        # V1.4.2 for Application enables the new non-backwards compatible
-        # features and fixes of fabric v1.4.2
-        V1_4_2: true
-        # V1.3 for Application enables the new non-backwards compatible
-        # features and fixes of fabric v1.3.
-        V1_3: false
-        # V1.2 for Application enables the new non-backwards compatible
-        # features and fixes of fabric v1.2 (note, this need not be set if
-        # later version capabilities are set)
-        V1_2: false
-        # V1.1 for Application enables the new non-backwards compatible
-        # features and fixes of fabric v1.1 (note, this need not be set if
-        # later version capabilities are set).
-        V1_1: false
+        # V2.0 for Application enables the new non-backwards compatible
+        # features and fixes of fabric v2.0.
+        # Prior to enabling V2.0 orderer capabilities, ensure that all
+        # orderers on a channel are at v2.0.0 or later.
+        V2_0: true
 ################################################################################
 #
-# SECTION: Application
+#   CHANNEL
 #
-# - This section defines the values to encode into a config transaction or
-# genesis block for application related parameters
+#   This section defines the values to encode into a config transaction or
+#   genesis block for channel related parameters.
+#
+################################################################################
+Channel: &ChannelDefaults
+    # Policies defines the set of policies at this level of the config tree
+    # For Channel policies, their canonical path is
+    #   /Channel/<PolicyName>
+    Policies:
+        # Who may invoke the 'Deliver' API
+        Readers:
+            Type: ImplicitMeta
+            Rule: "ANY Readers"
+        # Who may invoke the 'Broadcast' API
+        Writers:
+            Type: ImplicitMeta
+            Rule: "ANY Writers"
+        # By default, who may modify elements at this config level
+        Admins:
+            Type: ImplicitMeta
+            Rule: "MAJORITY Admins"
+    # Capabilities describes the channel level capabilities, see the
+    # dedicated Capabilities section elsewhere in this file for a full
+    # description
+    Capabilities:
+        <<: *ChannelCapabilities
+################################################################################
+#
+#   APPLICATION
+#
+#   This section defines the values to encode into a config transaction or
+#   genesis block for application-related parameters.
 #
 ################################################################################
 Application: &ApplicationDefaults
     # Organizations is the list of orgs which are defined as participants on
     # the application side of the network
     Organizations:
+    # Policies defines the set of policies at this level of the config tree
+    # For Application policies, their canonical path is
+    #   /Channel/Application/<PolicyName>
+    Policies: &ApplicationDefaultPolicies
+        LifecycleEndorsement:
+            Type: ImplicitMeta
+            Rule: "ANY Readers"
+        Endorsement:
+            Type: ImplicitMeta
+            Rule: "ANY Readers"
+        Readers:
+            Type: ImplicitMeta
+            Rule: "ANY Readers"
+        Writers:
+            Type: ImplicitMeta
+            Rule: "ANY Writers"
+        Admins:
+            Type: ImplicitMeta
+            Rule: "MAJORITY Admins"
+
     Capabilities:
         <<: *ApplicationCapabilities
 ################################################################################
 #
-# Profile
+#   PROFILES
 #
-# - Different configuration profiles may be encoded here to be specified
-# as parameters to the configtxgen tool
+#   Different configuration profiles may be encoded here to be specified as
+#   parameters to the configtxgen tool. The profiles which specify consortiums
+#   are to be used for generating the orderer genesis block. With the correct
+#   consortium members defined in the orderer genesis block, channel creation
+#   requests may be generated with only the org member names and a consortium
+#   name.
 #
 ################################################################################
 Profiles:
     TwoOrgChannel:
+        <<: *ChannelDefaults
         Consortium: AWSSystemConsortium
         Application:
             <<: *ApplicationDefaults
@@ -322,7 +420,7 @@ docker exec cli peer channel create -c ourchannel \
 
 ## Step 8\.8: Get Channel Genesis Block<a name="get-started-joint-channel-get-genesis-block"></a>
 
-Both org1 and org2 need to run the following command on their respective Hyperledger Fabric clients to join their peer nodes to the channel\. For more information about the `peer channel` command, see [peer channel](https://hyperledger-fabric.readthedocs.io/en/release-1.4/commands/peerchannel.html) in Hyperledger Fabric documentation\.
+Both org1 and org2 need to run the following command on their respective Hyperledger Fabric clients to join their peer nodes to the channel\. For more information about the `peer channel` command, see [peer channel](https://hyperledger-fabric.readthedocs.io/en/release-2.2/commands/peerchannel.html) in Hyperledger Fabric documentation\.
 
 ```
 docker exec cli peer channel fetch oldest /opt/home/ourchannel.block \
@@ -332,7 +430,7 @@ docker exec cli peer channel fetch oldest /opt/home/ourchannel.block \
 
 ## Step 8\.9: Join Peer Nodes to the Channel<a name="get-started-joint-channel-invite-join-peer"></a>
 
-Both org1 and org2 need to run the following command on their respective Hyperledger Fabric clients to join their peer nodes to the channel\. For more information about the `peer channel` command, see [peer channel](https://hyperledger-fabric.readthedocs.io/en/release-1.4/commands/peerchannel.html) in Hyperledger Fabric documentation\.
+Both org1 and org2 need to run the following command on their respective Hyperledger Fabric clients to join their peer nodes to the channel\. For more information about the `peer channel` command, see [peer channel](https://hyperledger-fabric.readthedocs.io/en/release-2.2/commands/peerchannel.html) in Hyperledger Fabric documentation\.
 
 ```
 docker exec cli peer channel join -b /opt/home/ourchannel.block \
@@ -343,12 +441,53 @@ Optionally, after you join a peer to a channel, you can set up the peer node as 
 
 ## Step 8\.10: Install Chaincode<a name="get-started-joint-channel-invite-install-chaincode"></a>
 
-Both org1 and org2 run the following command on their respective Hyperledger Fabric clients to install example chaincode on their respective peer nodes:
+Both org1 and org2 run the following commands on their respective Hyperledger Fabric clients to install example chaincode on their respective peer nodes:
 
-```
-docker exec cli peer chaincode install -n myjointcc -v v0 \
--p github.com/chaincode_example02/go
-```
+1. Install the example chaincode package on the peer node\.
+
+   ```
+   docker exec cli peer lifecycle chaincode install abstore.tar.gz
+   ```
+
+1. Verify that the chaincode package is installed on the peer node\.
+
+   ```
+   docker exec cli peer lifecycle chaincode queryinstalled
+   ```
+
+   The command returns the following if the package is installed successfully\.
+
+   ```
+   Installed chaincodes on peer:
+   Package ID: MyPackageID, Label: abstore_1
+   ```
+
+1. Approve the chaincode definition for the organization\. Replace *MyPackageID* with the Package ID value returned in the previous step\.
+
+   ```
+   export CC_PACKAGE_ID=MyPackageID
+   docker exec cli peer lifecycle chaincode approveformyorg \
+   --orderer $ORDERER --tls --cafile /opt/home/managedblockchain-tls-chain.pem \
+   --channelID ourchannel --name myjointcc --version v0 --sequence 1 --package-id $CC_PACKAGE_ID
+   ```
+
+1. Check the commit readiness of the chaincode definition\.
+
+   ```
+   docker exec cli peer lifecycle chaincode checkcommitreadiness \
+   --orderer $ORDERER --tls --cafile /opt/home/managedblockchain-tls-chain.pem \
+   --channelID ourchannel --name myjointcc --version v0 --sequence 1
+   ```
+
+   The command returns `true` if the chaincode is ready to be committed\.
+
+1. Commit the chaincode definition on the channel\.
+
+   ```
+   docker exec cli peer lifecycle chaincode commit \
+   --orderer $ORDERER --tls --cafile /opt/home/managedblockchain-tls-chain.pem \
+   --channelID ourchannel --name myjointcc --version v0 --sequence 1
+   ```
 
 ## Step 8\.11: Instantiate Chaincode<a name="get-started-joint-channel-invite-instantiate"></a>
 
@@ -373,7 +512,7 @@ The command should return the value of `a`, which you instantiated to a value of
 
 ## Step 8\.12: Invoke Chaincode<a name="get-started-joint-channel-invite-invoke"></a>
 
-With the channel created and configured with both members, and the chaincode instantiated with values and an endorsement policy, channel members can invoke chaincode\. This example command is similar to the example in [Step 7\.4: Invoke the Chaincode](get-started-chaincode.md#get-started-create-channel-invoke-chaincode)\. However, the command uses the `--peerAddresses` option to specify the endpoints of peer nodes that belong to members in the endorsement policy\. The example specifies *Org2PeerNodeEndpoint* in addition to *Org1PeerEndpoint*\.
+With the channel created and configured with both members, and the chaincode instantiated with values and an endorsement policy, channel members can invoke chaincode\. This example command is similar to the example in [Step 7\.11: Invoke the Chaincode](get-started-chaincode.md#get-started-chaincode-invoke)\. However, the command uses the `--peerAddresses` option to specify the endpoints of peer nodes that belong to members in the endorsement policy\. The example specifies *Org2PeerNodeEndpoint* in addition to *Org1PeerEndpoint*\.
 
 ```
 docker exec cli peer chaincode invoke \ 

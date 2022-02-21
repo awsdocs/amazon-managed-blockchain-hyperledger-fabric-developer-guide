@@ -17,6 +17,6 @@ We recommend the following resources to get started with Hyperledger Fabric netw
 + [Get Started Creating a Hyperledger Fabric Blockchain Network Using Amazon Managed Blockchain](managed-blockchain-get-started-tutorial.md)
 
   Use this tutorial to create your first Hyperledger Fabric network, set up a Hyperledger Fabric client on EC2, and use the open\-source Hyperledger Fabric peer CLI to query and update the ledger\. You then invite another member to the network\. The member can be from a different AWS account, or you can invite a new member in your own account to simulate a multi\-account network\. The new member then queries and updates the ledger\.
-+ [Hyperledger Fabric Documentation \(v1\.4\)](https://hyperledger-fabric.readthedocs.io/en/release-1.4/)
++ [Hyperledger Fabric Documentation \(v2\.2\)](https://hyperledger-fabric.readthedocs.io/en/release-2.2/)
 
   The open\-source documentation for Hyperledger Fabric is a starting point for key concepts and the architecture of the Hyperledger Fabric blockchain network that you build using Managed Blockchain\. As you develop your blockchain application, you can reference this document for key tasks and code samples\. Use the documentation version that corresponds to the version of Hyperledger Fabric that you use\.

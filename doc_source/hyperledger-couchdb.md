@@ -1,10 +1,10 @@
 # Query Chaincode Data in the State Database<a name="hyperledger-couchdb"></a>
 
-The [state database](https://hyperledger-fabric.readthedocs.io/en/release-1.4/ledger/ledger.html#world-state) in Hyperledger Fabric peer nodes on Managed Blockchain networks created using Hyperledger Fabric 1\.4 and later supports two types of peer state databases:
+The [state database](https://hyperledger-fabric.readthedocs.io/en/release-2.2/ledger/ledger.html#world-state) in Hyperledger Fabric peer nodes on Managed Blockchain networks created using Hyperledger Fabric 1\.4 and later supports two types of peer state databases:
 + **CouchDB** is a state database in Managed Blockchain that models ledger data as JSON\. It is the default peer state database for Hyperledger Fabric 1\.4 or later network on Managed Blockchain because CouchDB supports rich queries and indexing for more efficient queries over large datasets\.
 + **LevelDB** is a state database that stores ledger data as simple key\-value pairs\. It is the only peer state database available for Hyperledger Fabric 1\.2 networks on Managed Blockchain\. LevelDB supports only key, key range, and composite key queries\.
 
-For detailed information about CouchDB implementation and capabilities in Hyperledger Fabric, see [CouchDB as the State Database](https://hyperledger-fabric.readthedocs.io/en/release-1.4/couchdb_as_state_database.html) in Hyperledger Fabric documentation\.
+For detailed information about CouchDB implementation and capabilities in Hyperledger Fabric, see [CouchDB as the State Database](https://hyperledger-fabric.readthedocs.io/en/release-2.2/couchdb_as_state_database.html) in Hyperledger Fabric documentation\.
 
 ## Specifying and Viewing the State Database Type<a name="hyperledger-couchdb-specify"></a>
 
@@ -18,9 +18,9 @@ The following examples demonstrate rich queries against a CouchDB state database
 
 The marbles02 sample chaincode is available when you [set up a Hyperledger Fabric client](get-started-create-client.md) according to the instructions in the getting started tutorial of this guide\. Those instructions include a [step to clone the samples repository](get-started-create-client.md#get-started-client-clone-samples) that contains marbles02\.
 
-For examples of basic queries that can be run when using either LevelDB or CouchDB, see the [query chaincode](get-started-chaincode.md#get-started-create-channel-query-chaincode) example in the getting started tutorial of this guide\.
+For examples of basic queries that can be run when using either LevelDB or CouchDB, see the [query chaincode](get-started-chaincode.md#get-started-chaincode-query) example in the getting started tutorial of this guide\.
 
-Before querying the chaincode, `install` the chaincode, `instantiate` it, and `invoke` the chaincode to add three ledger records as shown in the following example commands\. For more information, see the [peer chaincode](https://hyperledger-fabric.readthedocs.io/en/release-1.4/commands/peerchaincode.html) command reference in Hyperledger Fabric documentation\.
+Before querying the chaincode, `install` the chaincode, `instantiate` it, and `invoke` the chaincode to add three ledger records as shown in the following example commands\. For more information, see the [peer chaincode](https://hyperledger-fabric.readthedocs.io/en/release-2.2/commands/peerchaincode.html) command reference in Hyperledger Fabric documentation\.
 
 ```
 docker exec cli peer chaincode install \

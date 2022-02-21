@@ -18,7 +18,7 @@ Consider the following before you enable and view CloudWatch Logs for Hyperledge
 + Logging requires the service\-linked role for Managed Blockchain\. The role is created automatically when an IAM principal \(user or role\) in your account with permissions to create the service\-linked role creates a network, member, or peer\. For more information, see [Using Service\-Linked Roles for Managed Blockchain](using-service-linked-roles.md)\.
 + Logging currently does not support CloudWatch Logs encryption\.
 + Logging currently does not support CloudWatch Logs Insights\.
-+ To log chaincode events, you must first configure Go chaincode for logging\. For more information, see [Logging Control for Go Chaincodes](https://hyperledger-fabric.readthedocs.io/en/release-1.4/logging-control.html#go-chaincodes) in the Hyperledger Fabric documentation\.
++ To log chaincode events, you must first configure Go chaincode for logging\. For more information, see [Logging Control for Chaincode](https://hyperledger-fabric.readthedocs.io/en/release-2.2/logging-control.html#chaincode) in the Hyperledger Fabric documentation\.
 
 ## Enabling and Disabling Logs<a name="monitoring-enable"></a>
 

@@ -187,6 +187,8 @@ The command should return output similar to the following:
 ,"errors":[],"messages":[],"success":true}
 ```
 
+Note that Hyperledger Fabric v2\.2 networks should use version 1\.4 of the CA client\.
+
 Alternatively, you can connect to the Fabric CA using Telnet as shown in the following example\. Use the same endpoint in the `curl` example, but separate the endpoint and the port as shown in the following example\.
 
 ```
@@ -206,7 +208,7 @@ If you are unable to connect to the Fabric CA, double\-check your network settin
 Now that you have verified that you can connect to the Hyperledger Fabric CA, run the following commands to configure the CA client\.
 
 **Note**  
-If you are working with Hyperledger Fabric v1\.2 networks, you need to install and build the correct client version, which is available at https://github\.com/hyperledger/fabric\-ca/releases/download/v1\.2\.1/hyperledger\-fabric\-ca\-linux\-amd64\-1\.2\.1\.tar\.gz\.
+If you are working with Hyperledger Fabric v1\.2 networks, you need to install and build the correct client version, which is available at [https://github\.com/hyperledger/fabric\-ca/releases/download/v1\.2\.1/hyperledger\-fabric\-ca\-linux\-amd64\-1\.2\.1\.tar\.gz](https://github.com/hyperledger/fabric-ca/releases/download/v1.2.1/hyperledger-fabric-ca-linux-amd64-1.2.1.tar.gz)\.
 
 ```
 mkdir -p /home/ec2-user/go/src/github.com/hyperledger/fabric-ca
@@ -227,14 +229,14 @@ tar -xzf hyperledger-fabric-ca-linux-amd64-1.4.7.tar.gz
 ## Step 4\.3: Clone the Samples Repository<a name="get-started-client-clone-samples"></a>
 
 **Note**  
-If you are working with Hyperledger Fabric v1\.2 networks, use `--branch v1.2.0` instead of `--branch v1.4.7` in the following commmands\.
+If you are working with Hyperledger Fabric v1\.2 or v1\.4 networks, use `--branch v1.2.0` or `--branch v1.4.7` instead of `--branch v2.2.3` in the following commmands\.
 
 ```
 cd /home/ec2-user
 ```
 
 ```
-git clone --branch v1.4.7 https://github.com/hyperledger/fabric-samples.git
+git clone --branch v2.2.3 https://github.com/hyperledger/fabric-samples.git
 ```
 
 ## Step 4\.4: Configure and Run Docker Compose to Start the Hyperledger Fabric CLI<a name="get-started-client-configure-peer-cli"></a>
@@ -246,14 +248,15 @@ Use a text editor to create a configuration file for Docker Compose named `docke
 When you subsequently use the `cli` container to run commands—for example, `docker exec cli peer channel create`—you can use the `-e` option to override an environment variable that you establish in the `docker-compose-cli.yaml` file\.
 
 **Note**  
-If you are working with Hyperledger Fabric v1\.2 networks, use `image: hyperledger/fabric-tools:1.2` in the following example instead of `image: hyperledger/fabric-tools:1.4`\. In addition, use `CORE_LOGGING_LEVEL=info` instead of `FABRIC_LOGGING_SPEC=info`\.
+If you are working with Hyperledger Fabric v1\.2 or v1\.4 networks, use `image: hyperledger/fabric-tools:1.2` or `image: hyperledger/fabric-tools:1.4` in the following example instead of `image: hyperledger/fabric-tools:2.2`\.  
+In addition for v1\.2, use `CORE_LOGGING_LEVEL=info` instead of `FABRIC_LOGGING_SPEC=info`\.
 
 ```
 version: '2'
 services:
   cli:
     container_name: cli
-    image: hyperledger/fabric-tools:1.4
+    image: hyperledger/fabric-tools:2.2
     tty: true
     environment:
       - GOPATH=/opt/gopath
@@ -266,7 +269,7 @@ services:
       - CORE_PEER_LOCALMSPID=MyMemberID
       - CORE_PEER_MSPCONFIGPATH=/opt/home/admin-msp
       - CORE_PEER_ADDRESS=MyPeerNodeEndpoint
-    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
+    working_dir: /opt/home
     command: /bin/bash
     volumes:
         - /var/run/:/host/var/run/

@@ -10,7 +10,7 @@ Creating an admin in Hyperledger Fabric is a three\-step process\.
 
 1. You then copy the certificate to the `admincerts` subdirectory, and the certificate validates the role of the identity as an admin\. Similarly, the CA updates the local MSP for the member's peer nodes and the ordering service so that the admin is recognized\.
 
- For more information, see [Fabric CA User's Guide](https://hyperledger-fabric-ca.readthedocs.io/en/release-1.4/users-guide.html) and [Membership](https://hyperledger-fabric.readthedocs.io/en/release-1.4/membership/membership.html) in Hyperledger Fabric documentation\.
+ For more information, see [Fabric CA User's Guide](https://hyperledger-fabric-ca.readthedocs.io/en/release-1.4/users-guide.html) and [Membership](https://hyperledger-fabric.readthedocs.io/en/release-2.2/membership/membership.html) in Hyperledger Fabric documentation\.
 
 When you first create a member in a Hyperledger Fabric network on Managed Blockchain, you specify the member's first user\. Managed Blockchain registers the identity of this user automatically with the Hyperledger Fabric CA\. This is called a *bootstrap identity*\. Even though the identity is registered, the remaining steps need to be performed\. The identity must then enroll itself as an admin and certificates must be updated\. After the steps are complete, the identity can install and instantiate chaincode and can be used to enroll additional identities as admins\.
 
@@ -45,7 +45,7 @@ fabric-ca-client register \
 
 ## Enrolling an Admin<a name="admin-hyperledger-admin-enroll"></a>
 
-After registering an identity as an admin, or creating a member along with the bootstrap identity, you can use the [Fabric\-CA Client CLI](https://hyperledger-fabric-ca.readthedocs.io/en/release-1.2/clientcli.html) `enroll` command to enroll that identity as an admin\. This is shown in the following example using these options:
+After registering an identity as an admin, or creating a member along with the bootstrap identity, you can use the [Fabric\-CA Client CLI](https://hyperledger-fabric-ca.readthedocs.io/en/release-1.4/clientcli.html) `enroll` command to enroll that identity as an admin\. This is shown in the following example using these options:
 + `-u` \(an alternative for `--url`\) specifies the endpoint of the CA along with the user name and password of the identity that you are enrolling\.
 + `tls.certfiles` specifies the location and file name of the Managed Blockchain TLS certificate that you copied from Amazon S3 \(see [Step 5\.1: Create the Certificate File](get-started-enroll-admin.md#get-started-enroll-member-create-cert)\)\.
 + `-M` \(an alternative for `--mspdir`\) specifies the MSP directory on the local machine where certificates are saved\. The example uses `/home/ec2-user/admin-msp`\.

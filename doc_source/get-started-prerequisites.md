@@ -3,14 +3,14 @@
 To complete this tutorial, you must have the resources listed in this section\. Unless specifically stated otherwise, the requirements apply to both network creators and invited members\.
 
 **Topics**
-+ [An AWS account](#w75aab9b9b7)
-+ [A Linux Client \(EC2 Instance\)](#w75aab9b9b9)
-+ [A VPC](#w75aab9b9c11)
++ [An AWS account](#w79aab9b9b7)
++ [A Linux Client \(EC2 Instance\)](#w79aab9b9b9)
++ [A VPC](#w79aab9b9c11)
 + [Permissions to Create an Interface VPC Endpoint](#vpc-endpoint-permissions)
 + [EC2 Security Groups That Allow Communication on Required Ports](#get-started-prerequisites-sgs)
 + [Additional Considerations](#additional-considerations)
 
-## An AWS account<a name="w75aab9b9b7"></a>
+## An AWS account<a name="w79aab9b9b7"></a>
 
 Before you use Managed Blockchain for the first time, you must sign up for an Amazon Web Services \(AWS\) account\.
 
@@ -24,7 +24,7 @@ If you do not have an AWS account, complete the following steps to create one\.
 
    Part of the sign\-up procedure involves receiving a phone call and entering a verification code on the phone keypad\.
 
-## A Linux Client \(EC2 Instance\)<a name="w75aab9b9b9"></a>
+## A Linux Client \(EC2 Instance\)<a name="w79aab9b9b9"></a>
 
 You must have a Linux computer with access to resources in the VPC to serve as your Hyperledger Fabric client\. This computer must have version 1\.16\.149 or later of the AWS CLI installed\. Earlier versions of the AWS CLI do not have the `managedblockchain` command\. We recommend that you use the latest version of the AWS CLI available\. For information about updating the AWS CLI, see [Update the AWS CLI version 2 on Linux](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html#cliv2-linux-upgrade) in the *AWS Command Line Interface User Guide*\.
 
@@ -32,7 +32,7 @@ We recommend creating an Amazon Elastic Compute Cloud \(Amazon EC2\) instance in
 
 An AWS CloudFormation template to create a Hyperledger Fabric client is available in [amazon\-managed\-blockchain\-client\-templates repository](https://github.com/awslabs/amazon-managed-blockchain-client-templates) on Github\. For more information, see the [readme\.md](https://github.com/awslabs/amazon-managed-blockchain-client-templates/blob/master/README.md) in that repository\. For more information about using AWS CloudFormation, see [Getting Started](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/GettingStarted.Walkthrough.html) in the *AWS CloudFormation User Guide*\.
 
-## A VPC<a name="w75aab9b9c11"></a>
+## A VPC<a name="w79aab9b9c11"></a>
 
 You must have a [VPC](https://docs.aws.amazon.com/vpc/latest/userguide/) with an IPv4 CIDR block, and the `enableDnsHostnames` and `enableDnsSupport` options must be set to `true`\. If you will connect to the Hyperledger Fabric client using SSH, the VPC must have an internet gateway, and the security group configuration associated with the Hyperledger Framework client must allow inbound SSH access from your SSH client\.
 + For more information about creating a suitable network, see [Getting Started with IPv4 for Amazon VPC](https://docs.aws.amazon.com/vpc/latest/userguide/getting-started-ipv4.html) tutorial in the *Amazon VPC User Guide*\.
@@ -96,4 +96,4 @@ This security group configuration is recommended for this tutorial only\. Carefu
 
 ## Additional Considerations<a name="additional-considerations"></a>
 + All commands in the tutorial assume that you are using an Amazon EC2 instance with an Amazon Linux AMI\. Unless noted otherwise, instructions also assume that you are running commands in the default home directory \(`/home/ec2-user`\)\. If you have a different configuration, modify instructions to fit your home directory as necessary\.
-+ Hyperledger Fabric requires that a channel ID contain only lowercase ASCII alphanumeric characters, dots \(\.\), and dashes \(\-\)\. It must start with a letter, and must be fewer than 250 characters\.
++ Hyperledger Fabric 2\.2 requires that a channel ID contain only lowercase ASCII alphanumeric characters, dots \(\.\), and dashes \(\-\)\. It must start with a letter, and must be fewer than 250 characters\.
